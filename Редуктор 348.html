@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Редуктор 348 — интерактивное пособие</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<style>
+:root{
+  --bg:#f4f6f8; --card:#ffffff; --ink:#1b2430; --muted:#5d6b7c; --line:#d5dce4;
+  --accent:#1f6feb; --accent-ink:#ffffff; --hl:#ff8a00; --ok:#1a8a3c; --warn:#b26a00;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#12171d; --card:#1b222b; --ink:#e6ebf1; --muted:#9aa7b6; --line:#2f3a47; --accent:#4c8dff; --ok:#4cc46f; --warn:#e0a03a}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(340px,1fr);gap:14px;align-items:start;margin-bottom:12px}
+.colL{position:sticky;top:12px}
+.colL .card,.colR .card{margin-bottom:12px}
+.colL .card{margin-bottom:0}
+.colR{display:flex;flex-direction:column}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.colL{position:static}#explain{order:-1}}
+h1{font-size:22px;margin:0 0 2px}
+.sub{margin:0 0 14px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.card h2{font-size:13px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.board{background:#fff;border-radius:6px;overflow:hidden}
+svg#scheme{width:100%;height:auto;display:block;max-height:calc(100vh - 190px);margin:0 auto}
+@media (max-width:1000px){svg#scheme{max-height:46vh}}
+.hint{font-size:13px;color:var(--muted);margin:8px 2px 0}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+@media (max-width:420px){.modes{grid-template-columns:1fr}}
+#stepNo{white-space:nowrap}
+#stepHead{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:4px;font-weight:600}
+.dots{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;flex:1;min-width:0;margin-left:10px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.done{background:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.dots i.cur{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+#stepper[hidden],#stepHead[hidden],#tip[hidden]{display:none}
+#tip{position:fixed;z-index:20;pointer-events:none;background:#101826;color:#fff;border:1px solid #ffffff40;border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.35;box-shadow:0 4px 14px #0006;max-width:260px}
+#tip b{display:block;font-size:13px}
+#tip .v{font-variant-numeric:tabular-nums;font-size:15px;font-weight:700}
+#tip .sw{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid #fff8;vertical-align:-1px;margin-right:6px}
+#tip small{opacity:.75;display:block}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+.modes button{text-align:left;font-weight:600;padding:11px 14px}
+.modes button small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.modes button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.modes button.on small{color:#ffffffd0}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+#explain h3{margin:0 0 6px;font-size:18px}
+#explain p{margin:0}
+#explain p.warn{color:var(--warn);font-weight:600;margin-top:6px}
+#partCard h3{margin:0 0 4px;font-size:16px}
+#partCard p{margin:0;color:var(--muted)}
+#more[hidden],#partCard[hidden]{display:none}
+.moreGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:820px){.moreGrid{grid-template-columns:1fr}}
+.moreGrid .card{margin:0}
+.ctl{margin-top:10px}
+.ctl label{display:flex;justify-content:space-between;gap:8px;font-weight:600;font-size:14px}
+.ctl output{font-variant-numeric:tabular-nums;color:var(--accent)}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.ctl small{color:var(--muted);display:block}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.seg{display:inline-flex}
+.seg button{border-radius:0;margin-left:-1px}
+.seg button:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.seg button:last-child{border-radius:0 8px 8px 0}
+table.vals{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px}
+.vals td{padding:4px 0;border-bottom:1px solid var(--line)}
+.vals td:last-child{text-align:right;font-weight:700}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;font-size:14px}
+ol.steps li{counter-increment:s;position:relative;padding:5px 8px 5px 32px;border-radius:8px;color:var(--muted)}
+ol.steps li::before{content:counter(s);position:absolute;left:6px;top:5px;width:19px;height:19px;border-radius:50%;border:1px solid var(--line);text-align:center;font-size:12px;line-height:17px}
+ol.steps li.act{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--ink)}
+ol.steps li.act::before{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:2px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:4px}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px;margin-top:10px;cursor:pointer}
+
+/* схема */
+.part{cursor:pointer}
+.part:hover{filter:drop-shadow(0 0 1.5px #ff8a00) drop-shadow(0 0 1.5px #ff8a00)}
+.part.hl{filter:drop-shadow(0 0 2px var(--hl)) drop-shadow(0 0 2px var(--hl)) drop-shadow(0 0 3px var(--hl))}
+.ol{stroke:#000;stroke-width:1}
+.cy{fill:#00ffff}.rd{fill:#ff0000}.ye{fill:#ffff00}
+#bubbles circle{fill:#fff;stroke:#1b2430;stroke-width:.3;pointer-events:none}
+.badges{display:none}
+.showBadges .badges{display:block}
+.badge{cursor:pointer}
+.badge circle{fill:#fff;stroke:#000;stroke-width:.9}
+.badge text{font:700 6px system-ui,Arial,sans-serif;text-anchor:middle;dominant-baseline:central;fill:#000;pointer-events:none}
+.badge:hover circle,.badge.sel circle{fill:#ff8a00}
+/* ---- полноэкранный режим (общий для всех приборов) ---- */
+.board{position:relative}
+.fsbtn{position:absolute;top:8px;right:8px;z-index:5;padding:5px 10px;font-size:13px;font-weight:600;background:#fff;color:#1b2430;border:1px solid #b9c2cc;opacity:.85}
+.fsbtn:hover{opacity:1}
+#fsExplain:empty{display:none}
+#fsPanel{display:none}
+.fsmode{position:fixed!important;inset:0;z-index:100;margin:0!important;border:0!important;border-radius:0!important;display:flex!important;flex-direction:column;background:var(--bg);padding:8px 16px!important;overflow:hidden}
+.fsmode .board{flex:none;margin:0 auto!important;max-width:none!important;aspect-ratio:auto!important}
+.fsmode svg#scheme{max-height:none!important}
+.fsmode #fsExplain{flex:none}
+.fsmode #fsExplain .card{margin:8px 0 0;padding:8px 14px;max-height:170px;overflow:auto}
+.fsmode #fsExplain h3{font-size:16px;margin:0 0 3px}
+.fsmode #fsExplain p{font-size:14.5px;line-height:1.4}
+.fsmode .gauges{margin-top:auto;padding-top:6px}
+.fsmode .hint{display:none}
+.fsmode #fsPanel{display:block;position:fixed;left:0;top:0;bottom:0;width:min(420px,92vw);transform:translateX(calc(-100% + 18px));transition:transform .18s ease;background:var(--card);border-right:1px solid var(--line);box-shadow:4px 0 18px #0005;z-index:110;overflow:hidden}
+.fsmode #fsPanel:hover{transform:none;overflow:auto}
+#fsTab{position:absolute;right:0;top:0;bottom:0;width:18px;writing-mode:vertical-rl;text-align:center;font-size:12px;font-weight:700;color:var(--muted);background:color-mix(in srgb,var(--accent) 18%,var(--card));display:flex;align-items:center;justify-content:center;letter-spacing:.06em}
+.fsmode #fsPanel:hover #fsTab{display:none}
+#fsBody{padding:12px 14px;margin-right:18px}
+.fsmode #fsPanel:hover #fsBody{margin-right:0}
+.fsmode .modes{margin-bottom:0}
+#tip{z-index:300!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0 0 6px"><a href="Интерактивное пособие 81-717-714.html" style="color:var(--accent);text-decoration:none;font-size:14px;font-weight:600">← К списку приборов</a></p>
+  <h1>Редуктор № 348 тормозной магистрали</h1>
+  <p class="sub">Тормозная магистраль, кран машиниста 334 · электропоезда 81-717/714</p>
+
+  <div class="layout"><div class="colL">
+  <div class="card">
+    <div class="board">
+      <svg id="scheme" viewBox="0 36 290 245" role="img" aria-label="Схема редуктора 348">
+        <defs>
+          <linearGradient id="gapGrad" x1="0" x2="1" y1="0" y2="0"><stop id="gap0" offset="0" stop-color="#00ffff"/><stop id="gap1" offset="1" stop-color="#ff0000"/></linearGradient>
+          <pattern id="hatch" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2" height="2" fill="#bbb"/><line x1="0" y1="0" x2="0" y2="2" stroke="#e08a2e" stroke-width=".9"/></pattern>
+        </defs>
+        <rect x="0" y="36" width="290" height="245" fill="#fff"/>
+
+        <!-- корпус -->
+        <path d="M2.5 75.5H280.5V276.3H150V242H2.5Z" fill="#c0c0c0" stroke="#000" stroke-width="1.2"/>
+
+        <!-- подписи магистралей -->
+        <rect x="33.5" y="40" width="27" height="29" class="cy" stroke="#000" stroke-width=".8" stroke-dasharray="1 1"/>
+        <text x="47" y="60" font-size="13" text-anchor="middle" fill="#000">НМ</text>
+        <rect x="65" y="40" width="27.5" height="29" class="rd" stroke="#000" stroke-width=".8" stroke-dasharray="1 1"/>
+        <text x="78.7" y="60" font-size="13" text-anchor="middle" fill="#000">ТМ</text>
+        <rect x="109" y="40" width="166" height="20" fill="#fff" stroke="#000" stroke-width="1"/>
+        <text id="boardTitle" x="192" y="54" font-size="10.5" text-anchor="middle" fill="#000"></text>
+
+        <!-- канал НМ -> возбудительный клапан (с обходом под ТМ) -->
+        <polyline points="47,90.3 66,90.3 71,96.5 87,96.5 92,90.3 187,90.3 187,149" fill="none" stroke="#000" stroke-width="6.1" stroke-linejoin="miter"/>
+        <polyline data-reg="nm" data-name="Канал НМ к возбудительному клапану" points="47,90.3 66,90.3 71,96.5 87,96.5 92,90.3 187,90.3 187,149" fill="none" stroke="#0ff" stroke-width="4.5" stroke-linejoin="miter"/>
+        <!-- НМ вертикаль -->
+        <polyline points="47,69 47,144" fill="none" stroke="#000" stroke-width="6.6"/>
+        <polyline data-reg="nm" data-name="Канал НМ" points="47,69 47,144" fill="none" stroke="#0ff" stroke-width="5"/>
+        <!-- ТМ вертикаль -->
+        <polyline points="79.3,69 79.3,144" fill="none" stroke="#000" stroke-width="7.6"/>
+        <polyline data-reg="tm" data-name="Питаемая магистраль (ТМ)" points="79.3,69 79.3,144" fill="none" stroke="#f00" stroke-width="6.3"/>
+
+        <!-- камера НМ (питательный клапан) -->
+        <rect class="cy ol" data-reg="nm" data-name="Камера НМ питательного клапана" x="14.5" y="142.5" width="46" height="53"/>
+        <!-- камера ТМ у питательного клапана -->
+        <rect class="rd ol" data-reg="tm" data-name="Магистральная (питаемая) камера" x="70.5" y="142.5" width="17.5" height="53"/>
+        <!-- седло-втулка питательного клапана: зазоры вокруг хвостовика -->
+        <rect data-reg="gap" data-name="Зазор у седла питательного клапана" x="58" y="162" width="12.5" height="14.2" fill="url(#gapGrad)"/>
+        <polygon points="58,157 70.5,157 70.5,162 61,162 58,160" fill="#9a9a9a" stroke="#000" stroke-width=".8"/>
+        <polygon points="58,181 70.5,181 70.5,176.2 61,176.2 58,178" fill="#9a9a9a" stroke="#000" stroke-width=".8"/>
+        <rect class="rd" data-reg="pl" data-name="Левая камера поршня (вокруг толкателя)" x="88" y="148" width="8.5" height="40"/>
+        <!-- канал ТМ вниз к мембране -->
+        <polyline points="79.3,194 79.3,234 162,234" fill="none" stroke="#000" stroke-width="7.6"/>
+        <polyline data-reg="tm" data-name="Канал ТМ к мембране" points="79.3,194 79.3,234 162,234" fill="none" stroke="#f00" stroke-width="6.3"/>
+
+        <!-- полость поршня -->
+        <rect x="96" y="114" width="38" height="110" fill="#fff" stroke="#000" stroke-width="1"/>
+        <rect id="chL" class="rd" data-reg="pl" data-name="Левая камера поршня" x="96.5" y="114.5" width="8" height="109"/>
+        <rect id="chR" class="cy" data-reg="pr" data-name="Правая камера поршня" x="114.5" y="114.5" width="19" height="109"/>
+        <!-- сальник толкателя -->
+        <rect x="88" y="146" width="5.8" height="6.5" fill="#000"/>
+        <rect x="88" y="185" width="5.8" height="6.5" fill="#000"/>
+
+        <!-- канал из полости поршня к возбудительному клапану -->
+        <polyline points="134,201.2 195,201.2" fill="none" stroke="#000" stroke-width="6.8"/>
+        <polyline data-reg="pr" data-name="Канал к правой камере поршня" points="134,201.2 195,201.2" fill="none" stroke="#0ff" stroke-width="5"/>
+        <path d="M204.5 176H225.5V195H237.5V213.8H194V195H204.5Z" class="cy ol" data-reg="pr" data-name="Камера под возбудительным клапаном"/>
+        <rect x="205" y="214.5" width="21" height="4.3" fill="#000"/>
+        <!-- камера над клапаном -->
+        <rect class="cy ol" data-reg="nm" data-name="Камера НМ над возбудительным клапаном" x="179.5" y="147.5" width="71.5" height="28.5"/>
+        <!-- фаски седла возбудительного клапана -->
+        <polygon points="198,176 204.5,176 204.5,182.5" fill="#0ff" stroke="#000" stroke-width=".7" data-reg="nm" data-name="Камера НМ над возбудительным клапаном"/>
+        <polygon points="232,176 225.5,176 225.5,182.5" fill="#0ff" stroke="#000" stroke-width=".7" data-reg="nm" data-name="Камера НМ над возбудительным клапаном"/>
+        <g fill="#c9c9ff" stroke="#000" stroke-width=".7">
+          <circle cx="203" cy="153" r="2.2"/><circle cx="203" cy="160" r="2.2"/><circle cx="203" cy="167" r="2.2"/>
+          <circle cx="228" cy="153" r="2.2"/><circle cx="228" cy="160" r="2.2"/><circle cx="228" cy="167" r="2.2"/>
+        </g>
+
+        <!-- камера над мембраной (ТМ) -->
+        <path id="chJ" class="rd" data-reg="tm" data-name="Камера над мембраной (давление питаемой магистрали)" d="" stroke="#000" stroke-width="1"/>
+        <!-- пружинная камера и стакан -->
+        <rect data-reg="atm" data-name="Полость под мембраной (атмосфера)" x="161" y="242" width="108.5" height="25.5" fill="#fff" stroke="#000" stroke-width="1"/>
+        <g id="gSprings" class="part" data-part="2">
+          <title>Регулировочная пружина</title>
+          <path id="spr1" fill="none" stroke="#000" stroke-width="3.8" stroke-linejoin="round"/>
+          <path id="spr1b" fill="none" stroke="#a9a9a9" stroke-width="2.2" stroke-linejoin="round"/>
+          <path id="spr2" fill="none" stroke="#000" stroke-width="3.8" stroke-linejoin="round"/>
+          <path id="spr2b" fill="none" stroke="#a9a9a9" stroke-width="2.2" stroke-linejoin="round"/>
+        </g>
+        <g class="part" data-part="3"><title>Регулировочный стакан</title>
+          <rect x="150.5" y="267.5" width="130" height="8.8" fill="#c0c0c0" stroke="#000" stroke-width="1"/>
+          <rect x="212.5" y="267" width="5" height="10" fill="#fff"/>
+          <path d="M212.5 267.5V276.3M217.5 267.5V276.3" stroke="#000" stroke-width="1"/>
+        </g>
+        <!-- мембрана -->
+        <g class="part" data-part="1"><title>Стальная мембрана</title>
+          <path id="dia" d="" fill="none" stroke="#000" stroke-width="1.9" stroke-linecap="square"/>
+          <path d="M155 242H275" stroke="transparent" stroke-width="7"/>
+        </g>
+
+        <!-- возвратная пружина питательного клапана (сечения витков) -->
+        <g class="part" data-part="9" fill="#c9c9ff" stroke="#000" stroke-width=".7"><title>Питательный клапан</title>
+          <circle cx="18" cy="158.2" r="1.5"/><circle cx="25" cy="158.2" r="1.5"/><circle cx="32" cy="158.2" r="1.5"/>
+          <circle cx="18" cy="180.1" r="1.5"/><circle cx="25" cy="180.1" r="1.5"/><circle cx="32" cy="180.1" r="1.5"/>
+        </g>
+        <!-- ===== подвижные части питательного узла ===== -->
+        <g id="mov">
+          <g class="part" data-part="9"><title>Питательный клапан</title>
+            <rect class="ye ol" x="40" y="153" width="13" height="32"/>
+            <rect x="48" y="156" width="4.5" height="6.5" fill="#000"/><rect x="48" y="175" width="4.5" height="7.5" fill="#000"/>
+            <rect class="ye ol" x="53" y="164.5" width="40.8" height="9.3"/>
+          </g>
+          <g class="part" data-part="6"><title>Поршень с толкателем</title>
+            <rect x="104.5" y="117" width="10" height="105.5" fill="#808080" stroke="#000" stroke-width=".9"/>
+            <path d="M84.5 155H100V150H118.8V160H126.8V177.5H118.8V187.5H100V184H84.5Z" fill="#6e6e6e" stroke="#000" stroke-width=".9"/>
+            <path d="M84.5 155H100V184H84.5Z" fill="none"/>
+          </g>
+          <g class="part" data-part="8"><title>Уплотнительная манжета</title>
+            <rect x="107.2" y="114" width="4.6" height="7" fill="#000"/><rect x="107.2" y="216.5" width="4.6" height="6.5" fill="#000"/>
+          </g>
+          <g class="part" data-part="7"><title>Отверстие 0,5 мм</title>
+            <rect x="104.5" y="198.4" width="10" height="3.6" fill="url(#hatch)" stroke="#000" stroke-width=".4"/>
+          </g>
+        </g>
+        <!-- выноска 0,5 мм -->
+        <polyline points="112,200.2 117,203 125.5,205 125.5,262" fill="none" stroke="#000" stroke-width=".8"/>
+        <text x="119" y="272" font-size="9" fill="#000">0,5мм</text>
+
+        <!-- возбудительный клапан -->
+        <g id="coneG" class="part" data-part="4"><title>Возбудительный клапан</title>
+          <rect class="ye ol" x="211" y="165" width="8.5" height="4"/>
+<rect class="ye ol" x="198" y="169" width="34.5" height="4.2"/>
+          <polygon class="ye ol" points="201,173.2 230,173.2 218.5,181 212.5,181"/>
+          <rect class="ye ol" x="212.5" y="181" width="6" height="58.5"/>
+        </g>
+
+        <!-- сетчатые фильтры -->
+        <g class="part" data-part="10"><title>Сетчатый фильтр питательного узла</title>
+          <rect x="44" y="76" width="6" height="6" fill="#fff" stroke="#000" stroke-width=".6"/><path d="M44 78h6M44 80h6M46 76v6M48 76v6" stroke="#000" stroke-width=".4"/></g>
+        <g class="part" data-part="5"><title>Сетчатый фильтр возбудительного узла</title>
+          <rect x="146" y="87.5" width="6" height="6" fill="#fff" stroke="#000" stroke-width=".6"/><path d="M146 89.5h6M146 91.5h6M148 87.5v6M150 87.5v6" stroke="#000" stroke-width=".4"/></g>
+
+        <!-- траектории воздуха (невидимые), по ним летят пузырьки -->
+        <g fill="none" stroke="none" id="flowPaths">
+          <!-- зарядка: НМ -> зазоры седла питательного клапана -> магистраль -->
+          <path data-g="arrSup" d="M47 72V136L55.5 143.5L56.5 161L72 162.6L79.3 153V72"/>
+          <path data-g="arrSup" d="M47 72V136L55.5 143.5L56.5 174L72 173.4L79.3 165V150"/>
+          <!-- возбудительный клапан: НМ -> зазоры конуса -> правая камера поршня -->
+          <path data-g="arrExc" d="M47 72V90.3H66L71 96.5H87L92 90.3H187V150L190 165L199 174L208.5 179V194L205 200L196 201.2H122"/>
+          <path data-g="arrExc" d="M187 150L238 158L238 174L229 177L222 182V194L217 199L205 201.2"/>
+          <!-- отверстие 0,5 мм в поршне (внутри слоя, который двигается вместе с поршнем) -->
+        </g>
+        <g id="holeLayer"><path id="holePath" data-g="arrHole" d="M121 200.2H100" fill="none" stroke="none"/></g>
+        <g id="bubbles"></g>
+
+        <!-- номера деталей -->
+        <g class="badges" id="badges"></g>
+      </svg>
+    </div>
+    <p class="hint">Нажмите на деталь схемы, чтобы узнать, как она работает. Наведите мышку на камеру или канал, чтобы увидеть давление воздуха в них.</p>
+  </div>
+  </div><div class="colR">
+
+  <div class="modes" id="modes">
+    <button data-mode="A">Давление ниже нормы<small>зарядка — клапаны открыты</small></button>
+    <button data-mode="B">Давление достигло нормы<small>возбудительный клапан закрылся</small></button>
+    <button data-mode="C">Норма 5,0 атм<small>допуск 4,8–5,2, оба клапана закрыты</small></button>
+    <button data-mode="D">Зарядка с нуля<small>по шагам, давление в камерах</small></button>
+  </div>
+
+  <div class="card" id="explain">
+    <div id="stepHead" hidden><span id="stepNo"></span><span class="dots" id="dots"></span></div>
+    <h3 id="mTitle"></h3>
+    <p id="mText"></p>
+    <p id="mWarn" class="warn" hidden></p>
+    <div id="stepper" class="btns" hidden>
+      <button id="sFirst">⏮ Сначала</button>
+      <button id="sPrev">◀ Назад</button>
+      <button id="sNext" class="primary">Далее ▶</button>
+      <button id="sAuto">▶ Авто</button>
+    </div>
+  </div>
+  <div id="tip" role="tooltip" hidden></div>
+
+  <div class="card" id="partCard" hidden>
+    <h2>Деталь</h2>
+    <h3 id="pTitle"></h3>
+    <p id="pText"></p>
+  </div>
+  </div></div>
+
+  </div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const cl = (x,a,b)=>Math.max(a,Math.min(b,x));
+const f2 = x => x.toFixed(2).replace('.',',');
+const NM = 8.0, PSET = 5.0;       // давление НМ и настройка редуктора (норма ТМ 5,0 атм, допуск 4,8–5,2)
+
+/* ---------- режимы (статичная схема) ---------- */
+const MODES = {
+  A:{title:"Давление в ТМ ниже 5 атм.", head:"Давление в магистрали ниже нормы — зарядка",
+     text:"Давление в питаемой магистрали ниже настройки. Регулировочная пружина прогибает стальную мембрану вверх, и она открывает возбудительный клапан. Воздух из НМ идёт в правую камеру поршня, поршень смещается влево, и толкатель открывает питательный клапан: НМ заряжает питаемую магистраль.",
+     pos:1, lift:1, arr:["arrSup","arrExc","arrHole"], vals:{Ptm:4.0,Pr:7.6,Pl:4.8}},
+  B:{title:"Давление в ТМ достигло нормы.", head:"Давление достигло нормы — возбудительный клапан закрылся",
+     text:"Давление в магистрали и над мембраной выросло, мембрана прогнулась вниз, и возбудительный клапан закрылся, отсекая НМ от правой камеры поршня. Через отверстие 0,5 мм воздух перетекает из правой камеры в левую, давление по обе стороны поршня выравнивается. Питательный клапан ещё открыт: пружина не успела вернуть поршень.",
+     pos:1, lift:0, arr:["arrHole"], vals:{Ptm:5.0,Pr:6.3,Pl:4.9}},
+  C:{title:"Давление в ТМ 5,0 атм (4,8–5,2).", head:"Норма 5,0 атм (допуск 4,8–5,2) — оба клапана закрыты",
+     text:"Давление справа и слева от поршня одинаковое, пружина питательного клапана вернула поршень вправо, и клапан закрылся. Зарядка прекращена. Если давление в магистрали снова упадёт ниже настройки (расход, утечка), цикл повторится с первого режима. Через неплотность штока давление в левой камере поршня подтягивается к давлению магистрали, поэтому повторная зарядка возможна и при небольшом давлении в НМ.",
+     pos:0, lift:0, arr:[], vals:{Ptm:5.0,Pr:5.0,Pl:5.0}}
+};
+
+/* ---------- детали ---------- */
+const PARTS = {
+ 1:["Стальная мембрана (возбудительный узел)","Чувствительный элемент. Сверху на неё давит воздух питаемой магистрали, снизу — регулировочная пружина. Если давление в магистрали ниже настройки, пружина прогибает мембрану вверх, и она через хвостовик открывает возбудительный клапан. Когда давление поднимается до настройки, мембрана прогибается вниз, и клапан закрывается."],
+ 2:["Регулировочная пружина","Нагружает мембрану снизу. От её усилия зависит давление в питаемой магистрали: чем сильнее сжата пружина, тем выше давление, которое поддерживает редуктор."],
+ 3:["Регулировочный стакан и контргайка","Ввёрнут в корпус редуктора. Вращением стакана меняют усилие регулировочной пружины на мембрану, затем стакан фиксируют контргайкой. Норму регулировки наносят на корпус белой краской: 5,0 — для ТМ и магистрали управления, 3,5 — для дверной магистрали (редукторы 348 стоят и в этих магистралях)."],
+ 4:["Возбудительный клапан","Латунный клапан с конусной поверхностью и хвостовиком, притёрт к седлу-втулке, имеет возвратную пружину. Хвостовиком взаимодействует с мембраной. Открываясь, пропускает воздух из НМ в правую (поршневую) камеру питательного узла."],
+ 5:["Сетчатый фильтр возбудительного узла","Стоит в канале НМ, ведущем к возбудительному клапану, и защищает его седло от загрязнений."],
+ 6:["Поршень с толкателем","Под давлением воздуха в правой камере перемещается влево, и толкатель нажимает на хвостовик питательного клапана. Давление справа и слева от поршня выравнивается через отверстие 0,5 мм, после чего пружина питательного клапана возвращает поршень."],
+ 7:["Калиброванное отверстие 0,5 мм","Отверстие в поршне. Через него воздух перетекает из правой камеры в левую, давление выравнивается, и питательный клапан плавно закрывается. Благодаря этому зарядка прекращается без рывка."],
+ 8:["Уплотнительная манжета поршня","Разделяет правую и левую камеры. Через неплотность штока воздух из левой камеры перетекает в питаемую магистраль, и давление в камерах поршня подтягивается к давлению магистрали. Поэтому повторную зарядку можно выполнить даже при небольшом давлении в НМ."],
+ 9:["Питательный клапан","Металлический клапан с хвостовиком, притёрт к седлу-втулке, с возвратной пружиной. Открывается толкателем поршня и соединяет камеру НМ с магистральной (питаемой) камерой, то есть заряжает питаемую магистраль."],
+ 10:["Сетчатый фильтр питательного узла","Стоит в канале НМ, ведущем к питательному клапану."]
+};
+
+/* ---------- схема ---------- */
+function spring(x1,y1,x2,y2,n,amp){
+  const dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy), ux=dx/len, uy=dy/len, nx=-uy, ny=ux;
+  let d=`M${x1.toFixed(1)} ${y1.toFixed(1)}`;
+  for(let i=1;i<=n*2;i++){
+    const t=(i-0.5)/(n*2), s=(i%2?1:-1)*amp;
+    d+=` L${(x1+dx*t+nx*s).toFixed(1)} ${(y1+dy*t+ny*s).toFixed(1)}`;
+  }
+  return d+` L${x2.toFixed(1)} ${y2.toFixed(1)}`;
+}
+function draw(pos,lift,arrows,cone){
+  const sh = 5*(1-pos), cn = cone===undefined ? lift : cone;      // cone — положение конуса возбудительного клапана (по умолчанию следует за мембраной)
+  $('mov').setAttribute('transform',`translate(${sh} 0)`);
+  $('chL').setAttribute('width',(104.5+sh)-96.5);
+  $('chR').setAttribute('x',114.5+sh); $('chR').setAttribute('width',133.5-(114.5+sh));
+  $('coneG').setAttribute('transform',`translate(0 ${5.5*(1-cn)})`);
+  const yc = 242.5-3*lift;
+  $('dia').setAttribute('d',`M155 242 Q215 ${2*yc-242} 275 242`);
+  $('chJ').setAttribute('d',`M161 221H269.5V242Q215 ${2*yc-242} 161 242Z`);
+  const t1=245-3*lift;
+  $('spr1').setAttribute('d',spring(186,t1+1,247,250,6,2)); $('spr1b').setAttribute('d',spring(186,t1+1,247,250,6,2));
+  $('spr2').setAttribute('d',spring(186,258.5,247,264.5,6,2)); $('spr2b').setAttribute('d',spring(186,258.5,247,264.5,6,2));
+  $('holeLayer').setAttribute('transform',`translate(${sh} 0)`);
+  bub.sh=sh;
+}
+
+/* ---------- пузырьки воздуха ----------
+   Воздух идёт только через открытые отверстия: зазор питательного клапана, зазор возбудительного клапана и отверстие 0,5 мм в поршне.
+   Скорость пузырьков постоянная и небольшая, сила потока меняется плавно; в учебных режимах A–C показаны стрелки исходного рисунка. */
+const bub={items:[],tgt:{arrSup:0,arrExc:0,arrHole:0},cur:{arrSup:0,arrExc:0,arrHole:0},dir:{arrSup:1,arrExc:1,arrHole:1},wdir:{arrSup:1,arrExc:1,arrHole:1},sh:0,speed:15,fade:0.9,fixed:null};
+const reduceMotion=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sat=x=>x<=0?0:x>=1?1:x*(2-x);
+function initBubbles(){
+  const layer=$('bubbles');
+  document.querySelectorAll('[data-g]').forEach((p,pi)=>{
+    const len=p.getTotalLength(), n=Math.max(3,Math.round(len/10)), circles=[];
+    for(let i=0;i<n;i++){
+      const c=document.createElementNS(NS,'circle');
+      c.setAttribute('r',(p.id==='holePath'?0.8:1.0+0.4*((i*7)%5)/4).toFixed(2));
+      c.style.display='none'; layer.appendChild(c); circles.push(c);
+    }
+    bub.items.push({p,len,g:p.dataset.g,circles,n,hole:p.id==='holePath',ph:(pi*0.37)%1});
+  });
+}
+function flowTargets(){
+  const t=bub.tgt;
+  if(bub.fixed){ for(const g in t) t[g]=bub.fixed.has(g)?1:0; bub.wdir.arrHole=1; return }
+  if(guided&&STEPS[gi].noair){ t.arrSup=t.arrExc=t.arrHole=0; return }                     // исходное состояние: воздух ещё не пошёл   // режимы A–C: стрелки исходного рисунка
+  t.arrSup=cl(G.pos,0,1)*sat((NM-G.Ptm)/2);                                                  // питательный клапан: зазор растёт с ходом поршня
+  t.arrExc=cl(G.cone,0,1)*sat((NM-G.Pr)/1.0);                                                // возбудительный клапан: зазор между конусом и седлом
+  t.arrHole=sat(Math.abs(G.Pr-G.Pl)/0.6); bub.wdir.arrHole=G.Pr>=G.Pl?1:-1;                  // отверстие 0,5 мм в поршне
+}
+function updateBubbles(dt){
+  flowTargets();
+  for(const g in bub.cur){
+    let goal=bub.tgt[g];
+    if(bub.wdir[g]!==bub.dir[g]){ goal=0; if(bub.cur[g]<0.02) bub.dir[g]=bub.wdir[g] }
+    const st=bub.fade*dt; bub.cur[g]=cl(bub.cur[g]+cl(goal-bub.cur[g],-Math.abs(st),Math.abs(st)),0,1);
+  }
+  for(const it of bub.items){
+    const k=bub.cur[it.g], dir=bub.dir[it.g];
+    it.ph=(it.ph+dt*bub.speed*dir/it.len)%1; if(it.ph<0) it.ph+=1;
+    for(let i=0;i<it.n;i++){
+      const c=it.circles[i];
+      if(k<0.03){ c.style.display='none'; continue }
+      let s=(i/it.n+it.ph)%1; if(dir<0) s=1-s;
+      const pt=it.p.getPointAtLength(s*it.len);
+      c.setAttribute('cx',(pt.x+(it.hole?bub.sh:0)).toFixed(2)); c.setAttribute('cy',pt.y.toFixed(2));
+      c.style.opacity=(Math.min(1,k*1.4)*Math.min(1,5*Math.min(s,1-s))).toFixed(2); c.style.display='';
+    }
+  }
+}
+
+/* ---------- давление в камерах: окраска и подсказка ---------- */
+const CYAN=[0,255,255], RED=[255,0,0];
+const REGCOL={nm:CYAN,pr:CYAN,tm:RED,pl:RED};
+const mixc=(b,t)=>`rgb(${[0,1,2].map(i=>Math.round(255+(b[i]-255)*t)).join(',')})`;
+const regEls=[...document.querySelectorAll('[data-reg]')];
+let curP={nm:NM,tm:PSET,pr:PSET,pl:PSET}, approx=true;
+function paint(v){
+  const t=p=>v.shade?cl(p/PSET,0,1):1;           // в статичных режимах — цвета как на исходном рисунке
+  curP={nm:NM,tm:v.Ptm,pr:v.Pr,pl:v.Pl}; approx=!v.shade;
+  const tt={nm:1,tm:t(v.Ptm),pr:t(v.Pr),pl:t(v.Pl)};
+  for(const el of regEls){
+    const r=el.dataset.reg; if(r==='atm'||r==='gap') continue;
+    const c=mixc(REGCOL[r],tt[r]);
+    if(el.tagName==='polyline') el.style.stroke=c; else el.style.fill=c;
+  }
+  $('gap0').setAttribute('stop-color',mixc(CYAN,1)); $('gap1').setAttribute('stop-color',mixc(RED,tt.tm));
+}
+const tip=$('tip');
+function showTip(el,x,y){
+  const r=el.dataset.reg;
+  let val, sw, note='';
+  if(r==='gap'){ val=`${f2(curP.nm)} → ${f2(curP.tm)} атм`; sw='linear-gradient(90deg,#0ff,#f00)'; note='воздух проходит из НМ в питаемую магистраль, когда питательный клапан открыт' }
+  else if(r==='atm'){ val='0 атм (атмосфера)'; sw='#fff' }
+  else { val=(approx?'≈ ':'')+f2(curP[r])+' атм'; sw=el.style.fill||el.style.stroke||'#fff'; if(approx) note='значение для примера; живое давление — в режиме «Зарядка с нуля»' }
+  tip.innerHTML=`<b>${el.dataset.name}</b><span class="v"><span class="sw" style="background:${sw}"></span>${val}</span>${note?`<small>${note}</small>`:''}`;
+  tip.hidden=false;
+  const w=tip.offsetWidth, h=tip.offsetHeight;
+  tip.style.left=Math.min(x+14,innerWidth-w-8)+'px'; tip.style.top=(y+h+22>innerHeight?y-h-10:y+16)+'px';
+}
+const svgEl=$('scheme');
+function tipMove(e){
+  const el=e.target.closest&&e.target.closest('[data-reg]');
+  if(el) showTip(el,e.clientX,e.clientY); else tip.hidden=true;
+}
+svgEl.addEventListener('pointermove',tipMove);
+svgEl.addEventListener('pointerdown',tipMove);
+svgEl.addEventListener('pointerleave',()=>{tip.hidden=true});
+
+/* ---------- описание деталей ---------- */
+document.querySelectorAll('[data-part]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();pick(el.dataset.part)}));
+function pick(k){
+  document.querySelectorAll('.hl').forEach(e=>e.classList.remove('hl'));
+  document.querySelectorAll(`[data-part="${k}"]`).forEach(e=>e.classList.add('hl'));
+  $('pTitle').textContent=k+'. '+PARTS[k][0]; $('pText').textContent=PARTS[k][1]; $('partCard').hidden=false;
+}
+document.querySelector('.board').addEventListener('click',e=>{
+  if(!e.target.closest('[data-part]')){document.querySelectorAll('.hl').forEach(x=>x.classList.remove('hl'));$('partCard').hidden=true}
+});
+
+/* ---------- статичные режимы ---------- */
+function showMode(k){
+  const m=MODES[k];
+  $('boardTitle').textContent=m.title;
+  $('mTitle').textContent=m.head; $('mText').textContent=m.text;
+  bub.fixed=new Set(m.arr);                     // в статичных режимах — стрелки исходного рисунка
+  draw(m.pos,m.lift,m.arr);
+  paint({Ptm:m.vals.Ptm,Pr:m.vals.Pr,Pl:m.vals.Pl,shade:false});
+}
+
+/* ---------- пошаговая зарядка с нуля ---------- */
+const G={Ptm:0,Pr:0,Pl:0,pos:0,lift:1,cone:1};
+const EASE={lin:k=>k,out:k=>1-(1-k)*(1-k),io:k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2};
+const ZERO={Ptm:0,Pr:0,Pl:0,pos:0,lift:1,cone:1};
+/* в каждом шаге заметно движется одна деталь (или идёт только давление): lift — мембрана с пружинами, cone — конус возбудительного клапана, pos — поршень с толкателем и питательным клапаном */
+const STEPS=[
+ {title:"Исходное состояние: все камеры пусты", dur:0.4, g:[], noair:true, to:ZERO,
+  text:"Питаемая магистраль и камеры поршня пусты (0 атм), поэтому на схеме они белые. НМ (8 атм) уже подведена к обоим клапанам. Над мембраной давления нет, и регулировочная пружина прогибает её вверх: возбудительный клапан открыт, питательный закрыт. Наведите мышку на любую камеру, чтобы увидеть давление в ней."},
+ {title:"Воздух из НМ заполняет правую камеру поршня", dur:6, g:["arrExc"], to:{...ZERO,Pr:2.5}, ease:{Pr:'out'},
+  text:"Воздух идёт из НМ по каналу к возбудительному клапану и через зазоры между конусом и седлом попадает в правую камеру поршня. Камера постепенно окрашивается в цвет НМ. Пока давление небольшое, поршень стоит: его удерживает пружина питательного клапана."},
+ {title:"Давление справа растёт, поршень пока стоит", dur:5, g:["arrExc"], to:{...ZERO,Pr:6.0}, ease:{Pr:'out'},
+  text:"Давление справа от поршня продолжает расти, но усилие на поршень пока меньше усилия пружины питательного клапана. Поршень, толкатель и питательный клапан остаются на месте, питательный клапан закрыт."},
+ {title:"Поршень сдвигается, питательный клапан открывается", dur:6, g:["arrExc","arrHole"], to:{Ptm:0,Pr:7.5,Pl:0.4,pos:1,lift:1,cone:1}, ease:{Pr:'out',pos:'io'},
+  text:"Давление справа преодолевает усилие пружины: поршень смещается влево, толкатель отодвигает питательный клапан от седла, и между ними появляется зазор. Через отверстие 0,5 мм небольшая часть воздуха уже просачивается в левую камеру."},
+ {title:"НМ заряжает питаемую магистраль", dur:12, g:["arrSup","arrExc","arrHole"], to:{Ptm:4.8,Pr:7.6,Pl:4.3,pos:1,lift:1,cone:1}, ease:{Ptm:'out',Pl:'out'},
+  text:"Воздух из НМ проходит через зазоры между седлом и хвостовиком питательного клапана в питаемую магистраль, она постепенно краснеет. Это же давление действует на мембрану сверху. Левая камера поршня через неплотность штока подтягивается к давлению магистрали."},
+ {title:"Давление достигло настройки: мембрана выпрямляется", dur:5, g:["arrSup","arrExc","arrHole"], to:{Ptm:5.0,Pr:7.6,Pl:4.8,pos:1,lift:0,cone:1}, ease:{Ptm:'out',lift:'io'},
+  text:"Когда давление над мембраной уравновешивает регулировочную пружину (5,0 атм), стальная мембрана прогибается вниз и выпрямляется. Вместе с ней опускается хвостовик возбудительного клапана и сжимается регулировочная пружина. Конус пока ещё стоит над седлом."},
+ {title:"Возбудительный клапан закрывается", dur:3.5, g:["arrSup","arrHole"], to:{Ptm:5.0,Pr:7.6,Pl:4.8,pos:1,lift:0,cone:0}, ease:{cone:'io'},
+  text:"Хвостовик отошёл от конуса, и возвратная пружина садит конус возбудительного клапана на седло. Правая камера отсечена от НМ и сохраняет накопленное давление."},
+ {title:"Давление справа и слева от поршня выравнивается", dur:8, g:["arrHole"], to:{Ptm:5.0,Pr:5.05,Pl:5.0,pos:1,lift:0,cone:0}, ease:{Pr:'out',Pl:'out'},
+  text:"Воздух из правой камеры через отверстие 0,5 мм перетекает в левую. Разность давлений на поршне падает, и сила, удерживающая питательный клапан открытым, уменьшается."},
+ {title:"Питательный клапан закрывается", dur:5, g:[], to:{Ptm:5.0,Pr:5.0,Pl:5.0,pos:0,lift:0,cone:0}, ease:{pos:'io'},
+  text:"Когда разность давлений становится меньше усилия пружины, она возвращает поршень вправо, и питательный клапан садится на седло. Зарядка прекращается плавно, без перерегулирования."},
+ {title:"Норма достигнута", dur:0.5, g:[], to:{Ptm:5.0,Pr:5.0,Pl:5.0,pos:0,lift:0,cone:0},
+  text:"Питаемая магистраль заряжена до 5,0 атм (допуск 4,8–5,2), оба клапана закрыты. Дальше редуктор ничего не делает, пока давление не упадёт ниже настройки (расход, утечка): тогда цикл повторится с первого шага."}
+];
+let gi=0, gT=0, gFrom={...ZERO}, gAuto=false, gHold=0, guided=false;
+const dotsEl=$('dots'); STEPS.forEach(()=>dotsEl.appendChild(document.createElement('i')));
+function renderStepUI(){
+  const s=STEPS[gi];
+  $('stepNo').textContent=`Шаг ${gi+1} из ${STEPS.length}`;
+  [...dotsEl.children].forEach((d,i)=>d.className=i<gi?'done':i===gi?'cur':'');
+  $('mTitle').textContent=s.title; $('mText').textContent=s.text;
+  $('sPrev').disabled=gi===0; $('sNext').disabled=gi===STEPS.length-1;
+}
+function enterStep(i,back){
+  gi=i; gT=0; gHold=0;
+  gFrom = i===0 ? {...ZERO} : back ? {...STEPS[i-1].to} : {...G};
+  renderStepUI();
+}
+function updateGuided(dt){
+  const s=STEPS[gi]; gT+=dt; const k=cl(gT/s.dur,0,1);
+  for(const key in s.to){ const e=EASE[(s.ease&&s.ease[key])||'io'](k); G[key]=gFrom[key]+(s.to[key]-gFrom[key])*e }
+  if(k>=1){
+    if(gAuto){ gHold+=dt; if(gHold>2.8 && gi<STEPS.length-1) enterStep(gi+1); }
+    if(gi===STEPS.length-1 && gAuto){ gAuto=false; $('sAuto').textContent='▶ Авто'; }
+  }
+  draw(G.pos,G.lift,k<1?s.g:[],G.cone);
+  paint({Ptm:G.Ptm,Pr:G.Pr,Pl:G.Pl,shade:true});
+  $('boardTitle').textContent=`Давление в ТМ ${f2(G.Ptm)} атм.`;
+}
+
+/* ---------- переключение режимов ---------- */
+function setMode(k){
+  guided=(k==='D');
+  document.querySelectorAll('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.mode===k));
+  $('stepper').hidden=!guided; $('stepHead').hidden=!guided;
+  if(guided){ bub.fixed=null; gAuto=false; $('sAuto').textContent='▶ Авто'; Object.assign(G,ZERO); enterStep(0); updateGuided(0); }
+  else showMode(k);
+}
+document.querySelectorAll('#modes button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+$('sNext').onclick=()=>{ if(gi<STEPS.length-1) enterStep(gi+1) };
+$('sPrev').onclick=()=>{ if(gi>0) enterStep(gi-1,true) };
+$('sFirst').onclick=()=>{ gAuto=false; $('sAuto').textContent='▶ Авто'; Object.assign(G,ZERO); enterStep(0) };
+$('sAuto').onclick=()=>{
+  gAuto=!gAuto; $('sAuto').textContent=gAuto?'⏸ Стоп авто':'▶ Авто';
+  if(gAuto && gi===STEPS.length-1) enterStep(0);
+};
+
+/* ---------- цикл ---------- */
+let last=performance.now();
+function frame(now){
+  const dt=Math.min(0.1,(now-last)/1000); last=now;
+  updateBubbles(reduceMotion?0:dt);
+  if(guided) updateGuided(dt);
+  requestAnimationFrame(frame);
+}
+initBubbles();
+setMode('A');
+requestAnimationFrame(frame);
+
+/* ---------- полноэкранный режим: схема + скрытое меню слева (открывается при наведении) ---------- */
+(function(){
+  const stage=document.querySelector('.colL > .card'), modes=document.getElementById('modes'), explain=document.getElementById('explain'), part=document.getElementById('partCard');
+  if(!stage||!modes||!explain) return;
+  const board=stage.querySelector('.board'), svg=stage.querySelector('svg#scheme'); if(!board) return;
+  const colR=modes.parentNode, par=svg&&svg.getAttribute('preserveAspectRatio');
+  const btn=document.createElement('button'); btn.className='fsbtn'; btn.textContent='⛶ На весь экран'; btn.title='Открыть схему на весь экран'; board.appendChild(btn);
+  const holder=document.createElement('div'); holder.id='fsExplain'; board.after(holder);
+  const panel=document.createElement('div'); panel.id='fsPanel'; panel.innerHTML='<div id="fsTab">☰ Управление</div><div id="fsBody"></div>'; stage.appendChild(panel);
+  const body=panel.querySelector('#fsBody');
+  const vb=svg&&svg.viewBox&&svg.viewBox.baseVal;
+  const ratio=()=>+stage.dataset.fsratio||(vb&&vb.width?vb.width/vb.height:board.clientWidth/board.clientHeight);
+  let r0=0;
+  function fit(){
+    if(!stage.classList.contains('fsmode')) return;
+    const cs=getComputedStyle(stage), g=stage.querySelector('.gauges');
+    const used=(g?g.offsetHeight+10:0)+(holder.offsetHeight?Math.max(holder.offsetHeight,70):0)+(parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom))+14;
+    const avail=stage.clientHeight-used, availW=stage.clientWidth-(parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight));
+    const w=Math.max(300,Math.min(availW,avail*r0));
+    board.style.width=w+'px'; board.style.height=(w/r0)+'px';
+  }
+  function enter(){
+    r0=ratio(); stage.classList.add('fsmode'); btn.textContent='✕ Выйти';
+    body.appendChild(modes); holder.appendChild(explain); if(part) holder.appendChild(part);
+    if(svg&&par==='none') svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+    const p=stage.requestFullscreen&&stage.requestFullscreen(); if(p&&p.catch) p.catch(()=>{});   // если браузер не разрешил, остаётся режим «поверх страницы»
+    fit(); setTimeout(fit,60); setTimeout(fit,300);
+  }
+  function leave(){
+    stage.classList.remove('fsmode'); btn.textContent='⛶ На весь экран'; board.style.width=''; board.style.height='';
+    colR.appendChild(modes); colR.appendChild(explain); if(part) colR.appendChild(part);
+    if(svg&&par==='none') svg.setAttribute('preserveAspectRatio',par);
+  }
+  btn.addEventListener('click',e=>{ e.stopPropagation(); if(stage.classList.contains('fsmode')){ if(document.fullscreenElement) document.exitFullscreen(); else leave() } else enter() });
+  document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&stage.classList.contains('fsmode')) leave(); else fit() });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&stage.classList.contains('fsmode')&&!document.fullscreenElement) leave() });
+  addEventListener('resize',fit);
+  new MutationObserver(fit).observe(holder,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+</body>
+</html>

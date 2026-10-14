@@ -1,0 +1,22 @@
+    int[] order={0,1,3,2,4,5,6,7,8,10,11,12,9}; int[] rank=new int[13]; for(int i=0;i<13;i++) rank[order[i]]=i;
+    // общий слой: области давления заполняются классом ближайшего соседа (сверху лежит своя перекраска)
+    int[,] qb=(int[,])q.Clone(); var wildB=new bool[w,h]; var domB=new bool[w,h];
+    for(int y=0;y<h;y++) for(int x=0;x<w;x++){ domB[x,y]=true; wildB[x,y]=key[x,y]!=null; }
+    FillWild(qb,wildB,domB,w,h);
+    var sbBase=new StringBuilder(); sbBase.Append("<g id=\"base\">\n");
+    foreach(int col in order){ if(col==0) continue; bool present=false; for(int y=0;y<h&&!present;y++) for(int x=0;x<w;x++) if(qb[x,y]==col){ present=true; break; } if(!present) continue;
+      var m=new bool[w,h]; for(int y=0;y<h;y++) for(int x=0;x<w;x++) m[x,y]=rank[qb[x,y]]>=rank[col];
+      sbBase.Append("<path fill=\""+hex[col]+"\" fill-rule=\"evenodd\" d=\""+Sm.Path(m,w,h)+"\"/>\n"); }
+    sbBase.Append("</g>\n");
+    var keys=new SortedSet<string>(); for(int y=0;y<h;y++) for(int x=0;x<w;x++) { if(key[x,y]!=null) keys.Add(key[x,y]); if(key0[x,y]!=null) keys.Add(key0[x,y]); }
+    var sbReg=new StringBuilder();
+    foreach(string k in keys){ foreach(int col in new int[]{0,2,4,5,6,7,8}){ var m=new bool[w,h]; bool any=false; for(int y=0;y<h;y++) for(int x=0;x<w;x++) if(key[x,y]==k&&q[x,y]==col){ m[x,y]=true; any=true; } if(any) sbReg.Append("<path data-reg=\""+k+"\" fill=\""+hex[col]+"\" fill-rule=\"evenodd\" d=\""+Sm.Path(m,w,h)+"\"/>\n"); } }
+    var sbParts=new StringBuilder();
+    foreach(var name in partOrder){ var m=partMask[name]; sbParts.Append("<g id=\""+name+"\">\n");
+      int[,] pc=(int[,])q0.Clone(); var wl=new bool[w,h]; for(int y=0;y<h;y++) for(int x=0;x<w;x++) wl[x,y]=m[x,y]&&key0[x,y]!=null;
+      FillWild(pc,wl,m,w,h);
+      foreach(int col in order){ bool present=false; for(int y=0;y<h&&!present;y++) for(int x=0;x<w;x++) if(m[x,y]&&pc[x,y]==col){ present=true; break; } if(!present) continue;
+        var mm=new bool[w,h]; for(int y=0;y<h;y++) for(int x=0;x<w;x++) mm[x,y]=m[x,y]&&rank[pc[x,y]]>=rank[col];
+        sbParts.Append("<path fill=\""+hex[col]+"\" fill-rule=\"evenodd\" d=\""+Sm.Path(mm,w,h)+"\"/>\n"); }
+      foreach(string k in keys){ foreach(int col in new int[]{0,2,4,5,6,7,8}){ var mm=new bool[w,h]; bool any=false; for(int y=0;y<h;y++) for(int x=0;x<w;x++) if(m[x,y]&&q0[x,y]==col&&key0[x,y]==k){ mm[x,y]=true; any=true; } if(any) sbParts.Append("<path data-reg=\""+k+"\" fill=\""+hex[col]+"\" fill-rule=\"evenodd\" d=\""+Sm.Path(mm,w,h)+"\"/>\n"); } }
+      sbParts.Append("</g>\n"); }

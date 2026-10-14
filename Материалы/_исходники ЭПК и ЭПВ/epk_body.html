@@ -1,0 +1,215 @@
+<style>
+.board{aspect-ratio:562/621;width:min(100%,calc((100vh - 190px)*562/621))}
+.steps{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.steps button{padding:7px 12px;font-weight:700}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.dots button{padding:4px 10px;font-size:13px;border-radius:999px}
+.dots button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.dots button.done{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.stbtn{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.stbtn button{font-weight:700;text-align:left}
+.stbtn button small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.stbtn button.on small{color:#ffffffd0}
+.bub{fill:#fff;stroke:#7a0a0a;stroke-width:1.5;pointer-events:none}
+.lbl{font:700 22px system-ui,Arial,sans-serif;fill:#111;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="Интерактивное пособие 81-717-714.html#tm">← К списку приборов</a>
+  <h1>%%H1%%</h1>
+  <p class="sub">%%SUB%%</p>
+
+  <div class="layout">
+    <div class="colL">
+      <div class="card">
+        <div class="board" id="board">
+          <svg id="scheme" viewBox="0 0 562 621" role="img" aria-label="%%H1%%">
+            <rect x="0" y="0" width="562" height="621" fill="#fff"/>
+%%LAYERS%%
+            <g id="labels">
+              <text class="lbl" x="22" y="437">ТМ</text>
+              <text class="lbl" x="448" y="213">Атм</text>
+              <text class="lbl" x="252" y="590">Атм</text>
+            </g>
+            <g id="flows"></g>
+            <g id="hits"></g>
+          </svg>
+        </div>
+        <div class="gauges chips" id="chips"></div>
+        <p class="hint">Красный цвет — воздух тормозной магистрали под давлением, белый — атмосферное давление. Включите нужное состояние или пройдите сценарий по шагам. Наведите мышку на деталь, чтобы увидеть её состояние, нажмите — прочитать описание.</p>
+      </div>
+    </div>
+    <div class="colR">
+      <div class="card modes" id="modes">
+        <h2>Состояние</h2>
+        <div class="stbtn" id="stbtn">
+          <button data-s="0">Под питанием<small>клапаны закрыты</small></button>
+          <button data-s="4">Без питания<small>ТМ — в атмосферу</small></button>
+        </div>
+        <h2>Сценарий по шагам</h2>
+        <div class="steps">
+          <button id="bPrev">◀ Назад</button><button id="bNext">Дальше ▶</button><button id="bAuto">▶ Авто</button>
+        </div>
+        <div class="dots" id="dots"></div>
+        <div class="rowx"><span class="lab">Скорость</span>
+          <span class="speed" id="speed"><button data-s="0.6">0,6×</button><button data-s="1" class="sel">1×</button><button data-s="1.6">1,6×</button></span>
+        </div>
+      </div>
+      <div class="card" id="explain">
+        <h3 id="mTitle"></h3>
+        <div id="mText"></div>
+      </div>
+      <div class="card" id="partCard" hidden>
+        <h2>Деталь</h2>
+        <h3 id="pTitle"></h3>
+        <p id="pText"></p>
+      </div>
+    </div>
+  </div>
+  <div id="tip" role="tooltip" hidden></div>
+</div>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const mk = (tag,at,par)=>{ const e=document.createElementNS(NS,tag); for(const k in at) e.setAttribute(k,at[k]); if(par) par.appendChild(e); return e };
+
+/* ---------- подвижные детали: сдвиг/поворот состояния B относительно A ---------- */
+const SH={arm:[0,-18],plate:[0,-18],low:[0,-16]}, LEVER=%%ANGLE%%, PIV=[395,60];
+const V={p1:0,p2:0,p3:0,pf:0,ch:0};            // p1 — якорь и рычаг, p2 — верхний клапан, p3 — нижний поршень, pf — давление в камерах, ch — зарядка
+const G={};                                    // группы SVG
+document.querySelectorAll('g.pa').forEach(g=>{ (G[g.dataset.p]=G[g.dataset.p]||{}).a=g });
+document.querySelectorAll('g.pb').forEach(g=>{ (G[g.dataset.p]=G[g.dataset.p]||{}).b=g });
+const PV={arm:'p1',lever:'p1',plate:'p2',low:'p3'};
+function draw(){
+  $('SB').setAttribute('opacity',V.pf.toFixed(3));
+  for(const n in G){ const t=V[PV[n]], g=G[n];
+    let ta,tb;
+    if(n==='lever'){ ta=`rotate(${(t*LEVER).toFixed(2)} ${PIV[0]} ${PIV[1]})`; tb=`rotate(${(-(1-t)*LEVER).toFixed(2)} ${PIV[0]} ${PIV[1]})` }
+    else { ta=`translate(${(t*SH[n][0]).toFixed(2)} ${(t*SH[n][1]).toFixed(2)})`; tb=`translate(${(-(1-t)*SH[n][0]).toFixed(2)} ${(-(1-t)*SH[n][1]).toFixed(2)})` }
+    g.a.setAttribute('transform',ta); g.a.setAttribute('opacity',(1-t).toFixed(3));
+    g.b.setAttribute('transform',tb); g.b.setAttribute('opacity',t.toFixed(3)); }
+}
+
+/* ---------- воздух: пузырьки идут по проходам ---------- */
+const FP={
+ fin:  {d:'M100 454 L176 454 L228 452', dir:1},
+ fb1:  {d:'M232 452 L262 478 L266 548', dir:1},
+ fb2:  {d:'M304 452 L316 478 L318 548', dir:1},
+ fneck:{d:'M290 440 L290 330 L290 296 L290 268', dir:1},
+ fup:  {d:'M290 268 L318 244 L394 214 L462 214', dir:1}
+};
+const flows={};
+for(const k in FP){ const p=mk('path',{d:FP[k].d,fill:'none',stroke:'none'},$('flows')); const len=p.getTotalLength(); const n=Math.max(3,Math.round(len/17)); const dots=[]; for(let i=0;i<n;i++) dots.push(mk('circle',{r:0,class:'bub'},$('flows'))); flows[k]={p,len,n,dots,ph:Math.random(),cur:0,ps:Math.random()*6} }
+function strength(k){
+  const drain = V.p3*(0.35+0.65*(1-V.pf));          // выход воздуха: нижний поршень поднят
+  switch(k){
+    case 'fin': return Math.max(drain, V.ch*0.9);
+    case 'fb1': case 'fb2': return drain*Math.min(1,V.p3*1.2);
+    case 'fneck': return V.p2*V.p3*(0.35+0.65*(1-V.pf));
+    case 'fup': return V.p2*V.p3*(0.35+0.65*(1-V.pf));
+  } return 0 }
+let last=performance.now(), speedK=1;
+function frame(now){
+  const dt=Math.min(0.1,Math.max(0,(now-last)/1000)); last=now;
+  stepAnim(dt);
+  for(const k in flows){ const f=flows[k]; const s=Math.max(0,Math.min(1,strength(k)));
+    f.cur+= (s-f.cur)*Math.min(1,dt*3.5);
+    f.ph=(f.ph+dt*speedK*34/f.len)%1;
+    for(let i=0;i<f.n;i++){ const u=(i/f.n+f.ph)%1; const q=f.p.getPointAtLength(u*f.len); const c=f.dots[i];
+      const fade=Math.sin(Math.PI*u); const r=f.cur*(3.6+1.5*Math.sin(u*9+i*2+f.ps))*Math.max(.35,fade);
+      c.setAttribute('cx',q.x.toFixed(1)); c.setAttribute('cy',q.y.toFixed(1)); c.setAttribute('r',Math.max(0,r).toFixed(2)); c.setAttribute('opacity',(f.cur*0.9).toFixed(2)); } }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- сценарий ---------- */
+const STEPS=[
+ {t:'Питание подано',tg:{p1:0,p2:0,p3:0,pf:0,ch:0},d:1.0,
+  txt:`<p>На катушки электромагнита подано напряжение. Якорь втянут вниз, шток прижимает <b class="k">верхний клапан</b> к седлу, а <b class="k">нижний поршень</b> стоит на месте и запирает выход в атмосферу.</p><p>Воздух из тормозной магистрали (ТМ) заполняет нижнюю камеру и подходит к закрытому верхнему клапану (красный цвет). Выходы «Атм» закрыты, утечки нет — магистраль заряжена.</p>`},
+ {t:'Питание снято: якорь отпускается',tg:{p1:1,p2:0,p3:0,pf:0,ch:0},d:1.1,
+  txt:`<p>Напряжение с катушек пропадает (например, по команде автостопа или системы безопасности). Магнитная сила исчезает, якорь и рычаг поднимаются. На рисунке они показаны выше, чем в рабочем состоянии.</p><p>Воздух пока заперт: верхний клапан и нижний поршень ещё не сдвинулись.</p>`},
+ {t:'Верхний клапан отходит от седла',tg:{p1:1,p2:1,p3:0,pf:0,ch:0},d:1.1,
+  txt:`<p>Шток поднимается вместе с якорем, и тарелка <b class="k">верхнего клапана</b> отходит от седла. Между камерой и верхней полостью открывается проход.</p><p>Верхняя полость сообщается с атмосферой через боковое отверстие «Атм» справа, но воздух к нему пока не идёт — нижний поршень остаётся на месте.</p>`},
+ {t:'Поднимается нижний поршень',tg:{p1:1,p2:1,p3:1,pf:0,ch:0},d:1.1,
+  txt:`<p>Нижний поршень поднимается и открывает нижний выход в атмосферу. Теперь воздух из ТМ имеет два пути: <b class="k">вниз</b> через нижнее отверстие «Атм» и <b class="k">вверх</b> через открытый верхний клапан и боковое отверстие «Атм».</p>`},
+ {t:'Воздух выходит из ТМ в атмосферу',tg:{p1:1,p2:1,p3:1,pf:1,ch:0},d:3.2,
+  txt:`<p>Сжатый воздух из ТМ уходит в атмосферу сразу по двум проходам — давление в камерах падает (красный цвет исчезает). Резкое падение давления в магистрали вызывает <b class="k">экстренное торможение</b> поезда.</p><p>Пока питание не вернулось, клапаны остаются открытыми и магистраль нельзя зарядить.</p>`},
+ {t:'Питание подано снова: ТМ заряжается',tg:{p1:0,p2:0,p3:0,pf:0,ch:1},d:2.6,
+  txt:`<p>Когда напряжение подано снова, якорь втягивается, верхний клапан садится на седло, нижний поршень закрывает выход в атмосферу. Воздух из подводящего трубопровода снова заполняет камеры, и ТМ заряжается — состояние возвращается к исходному.</p>`}
+];
+let si=0, anim=null, auto=null;
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function stepAnim(dt){
+  if(!anim) return; anim.t+=dt*speedK; const u=Math.min(1,anim.t/anim.d), e=ease(u);
+  for(const k in anim.to) V[k]=anim.from[k]+(anim.to[k]-anim.from[k])*e;
+  if(u>=1){ if(anim.to.ch>0 && si===5) V.ch=1; anim=null; if(si===5) setTimeout(()=>{ if(si===5&&!anim) V.ch=0 },1200); }
+  draw(); refreshChips();
+}
+function go(i,instant){
+  si=Math.max(0,Math.min(STEPS.length-1,i)); const s=STEPS[si];
+  anim={from:Object.assign({},V),to:s.tg,t:0,d:s.d};
+  if(si===5){ V.ch=1; anim.to=Object.assign({},s.tg,{ch:1}); }
+  if(instant){ Object.assign(V,s.tg); if(si!==5) V.ch=0; anim=null; draw(); }
+  $('mTitle').textContent=(si+1)+'. '+s.t; $('mText').innerHTML=s.txt;
+  document.querySelectorAll('#dots button').forEach((b,j)=>{ b.classList.toggle('on',j===si); b.classList.toggle('done',j<si) });
+  document.querySelectorAll('#stbtn button').forEach(b=>b.classList.toggle('on',+b.dataset.s===si));
+  $('bPrev').disabled=si===0; $('bNext').disabled=si===STEPS.length-1; refreshChips();
+}
+for(let i=0;i<STEPS.length;i++){ const b=document.createElement('button'); b.textContent=i+1; b.title=STEPS[i].t; b.onclick=()=>{ stopAuto(); go(i) }; $('dots').appendChild(b) }
+$('bPrev').onclick=()=>{ stopAuto(); go(si-1) };
+$('bNext').onclick=()=>{ stopAuto(); go(si+1) };
+function stopAuto(){ if(auto){ clearInterval(auto); auto=null } $('bAuto').textContent='▶ Авто' }
+$('bAuto').onclick=()=>{
+  if(auto){ stopAuto(); return }
+  $('bAuto').textContent='❚❚ Стоп'; if(si>=STEPS.length-1) go(0);
+  const tick=()=>{ if(anim) return; if(si>=STEPS.length-1){ stopAuto(); return } go(si+1) };
+  tick(); auto=setInterval(tick,400);
+};
+document.querySelectorAll('#stbtn button').forEach(b=>b.onclick=()=>{ stopAuto(); go(+b.dataset.s) });
+document.querySelectorAll('#speed button').forEach(b=>b.onclick=()=>{ speedK=+b.dataset.s; document.querySelectorAll('#speed button').forEach(x=>x.classList.toggle('sel',x===b)) });
+
+/* ---------- состояния деталей ---------- */
+const st={ power:()=>V.p1<0.5, arm:()=>V.p1<0.5, valve:()=>V.p2<0.5, piston:()=>V.p3<0.5, air:()=>V.pf<0.5 };
+function refreshChips(){
+  const on=V.p1<0.5;
+  $('chips').innerHTML=[
+   ['Питание катушек',on?'есть':'нет'],['Якорь',on?'втянут':'отпущен'],['Верхний клапан',V.p2<0.5?'закрыт':'открыт'],['Нижний поршень',V.p3<0.5?'закрывает выход':'выход открыт'],['ТМ',V.pf<0.5?(V.ch>0?'заряжается':'заряжена'):'сообщена с атмосферой']
+  ].map(c=>`<span class="chip${c[1]==='есть'||c[1]==='заряжена'?' on':''}"><span>${c[0]}:</span> <b>${c[1]}</b></span>`).join('');
+}
+
+/* ---------- детали: подсказки и описания ---------- */
+const HITS=[
+ ['coil','Катушки электромагнита',178,76,80,72,'Две обмотки электромагнита. Пока на них подано напряжение, электромагнит удерживает якорь в рабочем положении и клапаны закрыты. При снятии напряжения магнитная сила пропадает.',()=>V.p1<0.5?'под напряжением':'без напряжения'],
+ ['coilR','Катушки электромагнита',330,76,80,72,'Вторая обмотка электромагнита (см. левую).',()=>V.p1<0.5?'под напряжением':'без напряжения'],
+ ['arm','Якорь',268,44,48,150,'Подвижный сердечник электромагнита. При питании втянут вниз, при снятии питания поднимается и увлекает шток с верхним клапаном.',()=>V.p1<0.5?'втянут':'отпущен'],
+ ['lever','Рычаг',230,34,182,44,'Рычаг в верхней части корпуса: вместе с якорем занимает нижнее положение при питании и поднимается при его снятии.',()=>V.p1<0.5?'в рабочем положении':'поднят'],
+ ['valve','Шток с верхним клапаном',216,196,142,100,'Шток соединён с якорем; на нём — тарелка верхнего клапана. При питании тарелка прижата к седлу и перекрывает проход к верхней полости и боковому выходу «Атм».',()=>V.p2<0.5?'закрыт':'открыт'],
+ ['piston','Нижний поршень (клапан)',194,362,196,112,'Поршень с уплотнением в нижней камере. При питании запирает нижний выход в атмосферу; при снятии питания поднимается и открывает его.',()=>V.p3<0.5?'выход закрыт':'выход открыт'],
+ ['tm','Подвод от тормозной магистрали (ТМ)',92,432,98,44,'Через этот штуцер в нижнюю камеру подаётся сжатый воздух из тормозной магистрали.',()=>V.pf<0.5?'под давлением':'давление падает'],
+ ['atmR','Атмосферное отверстие (боковое)',394,194,76,38,'Боковой выход верхней полости в атмосферу. Открыт для воздуха только когда верхний клапан отошёл от седла.',()=>V.p2<0.5?'воздух не идёт':'воздух выходит'],
+ ['atmB','Атмосферное отверстие (нижнее)',242,478,104,70,'Нижний выход в атмосферу. Закрыт нижним поршнем, пока на катушки подано напряжение.',()=>V.p3<0.5?'закрыто':'открыто'],
+ ['low','Нижняя камера',190,350,206,128,'Сюда поступает воздух из ТМ. Пока клапаны закрыты, камера заполнена сжатым воздухом.',()=>V.pf<0.5?'под давлением':'разряжена'],
+ ['up','Верхняя полость',190,164,206,130,'Полость вокруг штока. При закрытом верхнем клапане сообщается только с боковым отверстием «Атм» и воздуха из ТМ не получает.',()=>V.p2<0.5?'отделена от ТМ':'сообщается с ТМ']
+];
+const hitInfo={}, hitState={};
+for(const [id,name,x,y,w,h,desc,fn] of HITS){ hitInfo[id]={name,desc}; hitState[id]=fn; mk('rect',{x,y,width:w,height:h,'data-id':id},$('hits')) }
+const tip=$('tip'), svgEl=$('scheme');
+function showTip(el,x,y){
+  const id=el.dataset.id, inf=hitInfo[id];
+  tip.innerHTML=`<b>${inf.name}</b><span class="v">${hitState[id]()}</span>`; tip.hidden=false;
+  const w=tip.offsetWidth,h=tip.offsetHeight;
+  tip.style.left=Math.min(x+14,innerWidth-w-8)+'px'; tip.style.top=(y+h+22>innerHeight?y-h-10:y+16)+'px';
+}
+const pick=e=>e.target.closest&&e.target.closest('rect[data-id]');
+svgEl.addEventListener('pointermove',e=>{ const el=pick(e); if(el) showTip(el,e.clientX,e.clientY); else tip.hidden=true });
+svgEl.addEventListener('pointerleave',()=>{ tip.hidden=true });
+svgEl.addEventListener('click',e=>{
+  document.querySelectorAll('#hits .hl').forEach(x=>x.classList.remove('hl'));
+  const el=pick(e);
+  if(el){ el.classList.add('hl'); const id=el.dataset.id, inf=hitInfo[id]; $('pTitle').textContent=inf.name; $('pText').textContent=inf.desc+' Сейчас: '+hitState[id]()+'.'; $('partCard').hidden=false }
+  else $('partCard').hidden=true;
+});
+
+go(0,true);
+requestAnimationFrame(frame);

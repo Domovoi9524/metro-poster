@@ -1,0 +1,16 @@
+          <svg id="scheme" viewBox="0 0 880 510" preserveAspectRatio="none" role="img" aria-label="Схема воздухораспределителя № 337.004">
+            <defs>
+              <linearGradient id="gF"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gF2"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gA"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gKi"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gKl"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gV1"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gV1a"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gV2"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gV2a"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gAR"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+              <linearGradient id="gARv"><stop offset="0"/><stop offset=".4"/><stop offset=".6"/><stop offset="1"/></linearGradient>
+            </defs>
+            <rect x="0" y="0" width="880" height="510" fill="#fff"/>
+            <image id="ref" href="Материалы/ВР 337 - схема.png" x="0" y="0" width="1056" height="567" opacity=".5" style="display:none"/>

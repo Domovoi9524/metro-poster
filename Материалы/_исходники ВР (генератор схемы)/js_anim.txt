@@ -1,0 +1,102 @@
+/* ---------- цвета давлений ---------- */
+const CYAN=[0,255,255], RED=[255,0,0], TEAL=[0,128,128], MAG=[255,0,255], GRN=[0,255,128], BLUE=[0,128,255];
+const REGCOL={zr:CYAN,nv:CYAN,tm:RED,mk:RED,rk:TEAL,kdr:MAG,tc:GRN,ar:BLUE,p1:CYAN,kl:TEAL};
+const mixc=(b,t)=>`rgb(${[0,1,2].map(i=>Math.round(255+(b[i]-255)*t)).join(',')})`;
+function pval(k){ switch(k){case 'zr':return NMP;case 'nv':return S.Pnv;case 'tm':return S.Ptm;case 'mk':return S.Pm;case 'rk':return S.Prk;case 'kdr':return S.Pkdr;case 'tc':return S.Ptc;case 'ar':return S.Pavt;case 'p1':return S.Pp1;case 'kl':return S.Pkl;default:return 0} }
+const colOf=k=>k==='atm'?'#fff':mixc(REGCOL[k],Math.pow(cl(pval(k)/5,0,1),0.8));
+const regEls=[...document.querySelectorAll('[data-reg]')].filter(e=>e.dataset.reg!=='atm'&&e.dataset.reg!=='gap');
+const GR={gF:['nv','tc'],gF2:['tc','nv'],gA:['tc','atm'],gKi:['rk','kl'],gKl:['kl','atm'],gV1:['nv','p1'],gV1a:['p1','atm'],gV2:['tm','mk'],gV2a:['mk','atm'],gAR:['tc','ar'],gARv:['ar','atm']};
+let colSig='';
+function paintRegions(){
+  const sig=[S.Pnv,S.Ptm,S.Pm,S.Prk,S.Pkdr,S.Ptc,S.Pavt,S.Pp1,S.Pkl].map(v=>Math.round(v*40)).join('|');
+  if(sig===colSig) return; colSig=sig;
+  const cache={};
+  for(const el of regEls){ const k=el.dataset.reg; if(!(k in cache)) cache[k]=colOf(k); el.style.fill=cache[k]; }
+  for(const g in GR){
+    const gr=$(g); if(!gr) continue; const st=gr.children, a=colOf(GR[g][0]), b=colOf(GR[g][1]);
+    st[0].setAttribute('stop-color',a); st[1].setAttribute('stop-color',a); st[2].setAttribute('stop-color',b); st[3].setAttribute('stop-color',b);
+  }
+}
+
+/* ---------- анимация деталей: подвижные детали вынесены из схемы как группы пикселей и сдвигаются ---------- */
+const cur={u:0,dy:0,v1:0,v2:0,ok:0,pst:0,kl:0,dmp:0.4,fa:0,va:0};
+function mv(k,target,dt,rate){ const d=target-cur[k], m=rate*dt; cur[k]+=Math.abs(d)<=m?d:Math.sign(d)*m }   /* плавное движение деталей, не быстрее rate единиц/с */
+const tr=(id,x,y)=>{ const e=$(id); if(e) e.setAttribute('transform',`translate(${x.toFixed(2)} ${y.toFixed(2)})`) };
+const setGap=(id,y,h)=>{ const e=$(id); if(!e) return; e.setAttribute('y',y.toFixed(2)); e.setAttribute('height',Math.max(0,h).toFixed(2)) };
+function applyParts(dtReal){
+  const dt=Math.min(dtReal,0.1);
+  mv('u',D.upx,dt,5); mv('dy',D.dy,dt,12);
+  mv('v1',S.vz1?1:0,dt,2); mv('v2',S.vz2?1:0,dt,2); mv('ok',S.ok?1:0,dt,4);
+  mv('pst',cl(S.Pp1/6,0,1),dt,2); mv('kl',D.kopen,dt,3); mv('dmp',S.dmp,dt,5);
+  mv('fa',D.fa,dt,4); mv('va',D.va,dt,4);
+  const u=cur.u, lift=Math.max(0,u-2), dy=cur.dy, gIn=D.forced?0:Math.max(0,dy-3), dyRod=Math.max(0,dy-1.6);
+  // режимная диафрагма (атмосферный клапан открыт при u=0, перекрыша при u=2, питательный клапан открыт при u>2), полая трубка с кольцом
+  tr('ptube',0,-lift); tr('mdia',0,-u); tr('mdiaB',0,-u); tr('cup',0,-u);
+  setGap('gapF1',48-lift,lift); setGap('gapF2',48-lift,lift);
+  setGap('gapA',85-lift,2-u+lift);
+  // режимный шток, упорка, поршенёк
+  tr('rodU',0,-dyRod); tr('sleeve',0,-5*cur.pst); tr('sp',0,-5*cur.pst);
+  // магистральная диафрагма с зажимом, клапаном и стержнем с манжетами
+  tr('md',0,-dy);
+  setGap('gapKi',330-gIn,gIn);
+  // КЛСЗ
+  const k=cur.kl; tr('klP',0,4*k); setGap('gapKl',367,4*k);
+  // вентили замещения
+  tr('v2s',0,3*cur.v2); setGap('gapV2',285,3*(1-cur.v2)); setGap('gapV2a',267,3*cur.v2);
+  tr('v1s',0,3*cur.v1); setGap('gapV1',277,3*cur.v1); setGap('gapV1a',262,1-cur.v1);
+  // авторежим: шток пневмореле опускается с загрузкой
+  tr('astem',0,4*cur.dmp);
+  setGap('gapAR',379,2*cur.fa); setGap('gapARv',327,3*cur.va);
+  // тормозной цилиндр, кран ВР, подпись загрузки
+  tr('cylP',-14*cl(S.Ptc/4,0,1),0);
+  $('vrX').style.display=S.cock?'none':'';
+  $('loadTxt').textContent='Загрузка: '+LOAD[S.load].n;
+}
+
+/* ---------- пузырьки воздуха: пути проходят по осям труб и каналов схемы ---------- */
+const FL={   // направление пути = направление «зарядки»; отрицательное направление — обратное движение
+%%FL%%
+};
+const bub={items:[],str:{},dir:{},t:0,speed:24};
+const pathBox=document.createElementNS(NS,'g'); pathBox.setAttribute('fill','none'); pathBox.setAttribute('stroke','none'); $('scheme').insertBefore(pathBox,$('bubbles'));
+for(const g in FL){
+  bub.str[g]=0; bub.dir[g]=1;
+  for(const d of FL[g]){
+    const p=document.createElementNS(NS,'path'); p.setAttribute('d',d); pathBox.appendChild(p);
+    const len=p.getTotalLength(), n=Math.max(2,Math.round(len/26)), circles=[];
+    for(let i=0;i<n;i++){ const c=document.createElementNS(NS,'circle'); c.setAttribute('r',(1.7+0.8*((i*7)%5)/4).toFixed(2)); c.style.display='none'; $('bubbles').appendChild(c); circles.push(c) }
+    bub.items.push({p,len,g,circles,n});
+  }
+}
+const reduceMotion=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function setFlows(){
+  const s=(g,val,dir)=>{ bub.str[g]=cl(val,0,1); if(dir!==undefined) bub.dir[g]=dir };
+  const tmf=S.vz2?0:Math.max(Math.abs(D.dPm)/0.5,(D.cuff?(S.Pm-S.Pkdr)*0.35/0.3:0));
+  s('tmpath',tmf,D.dPm>=-0.001?1:-1); s('mkb',tmf*0.8,D.dPm>=-0.001?1:-1);
+  s('v2vent',S.vz2&&S.Pm>0.02?S.Pm/2.5:0);
+  s('hole',Math.abs(D.hole)/0.25, D.hole>=0?1:-1);
+  s('kdr',Math.abs(D.dPkdr)/2, D.dPkdr>=0?1:-1);
+  s('nmfeed',D.feedF*1.0); s('tcfeed',D.feedF*1.0);
+  s('tcvent',D.atmF*cl(0.3+S.Ptc/1.5,0,1));
+  s('p1fill',S.vz1&&D.dPp1>0.03?D.dPp1/3:0);
+  s('p1vent',!S.vz1&&S.Pp1>0.03?S.Pp1/3:0);
+  s('okvent',S.ok&&S.Prk>0.03?S.Prk/3:0);
+  s('klvent',D.kopen?cl((S.Prk-5)*2+0.3,0.3,1):0);
+  s('arfeed',D.fa*0.8,D.dPavt>=0?1:-1); s('arvent',D.va*0.6);
+}
+function updateBubbles(dt){
+  bub.t+=dt;
+  for(const it of bub.items){
+    const on=bub.str[it.g]>0.04, dir=bub.dir[it.g];
+    for(let i=0;i<it.n;i++){
+      const c=it.circles[i];
+      if(!on){c.style.display='none';continue}
+      let s=((i/it.n)+bub.t*bub.speed*(0.35+bub.str[it.g])/it.len)%1;
+      if(dir<0) s=1-s;
+      const pt=it.p.getPointAtLength(s*it.len);
+      c.setAttribute('cx',pt.x.toFixed(1)); c.setAttribute('cy',pt.y.toFixed(1));
+      c.style.opacity=Math.min(1,5*Math.min(s,1-s)).toFixed(2); c.style.display='';
+    }
+  }
+}
+

@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кран машиниста 334 — интерактивное пособие</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<style>
+:root{
+  --bg:#f4f6f8; --card:#ffffff; --ink:#1b2430; --muted:#5d6b7c; --line:#d5dce4;
+  --accent:#1f6feb; --accent-ink:#ffffff; --hl:#ff8a00; --ok:#1a8a3c; --warn:#b26a00;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#12171d; --card:#1b222b; --ink:#e6ebf1; --muted:#9aa7b6; --line:#2f3a47; --accent:#4c8dff; --ok:#4cc46f; --warn:#e0a03a}
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+.top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+a.back{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+a.back:hover{text-decoration:underline}
+h1{font-size:22px;margin:0}
+.sub{margin:2px 0 12px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(340px,1fr);gap:14px;align-items:start;margin-bottom:12px}
+.colL{position:sticky;top:12px}
+.colR{display:flex;flex-direction:column}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.colL{position:static}#explain{order:-1}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.colL .card{margin-bottom:0}
+.card h2{font-size:13px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.board{position:relative;background:#fff;border-radius:6px;overflow:hidden;aspect-ratio:851/468;width:min(100%,calc((100vh - 270px)*851/468));margin:0 auto;cursor:default;touch-action:manipulation}
+@media (max-width:1000px){.board{width:min(100%,calc(46vh*851/468))}}
+#cv{display:block;width:100%;height:100%}
+svg#scheme{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.board.hov{cursor:pointer}
+.hint{font-size:13px;color:var(--muted);margin:8px 2px 0}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:disabled{opacity:.45;cursor:default}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.modes{margin-bottom:12px}
+.modes h2{font-size:12px;margin:10px 0 6px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.modes h2:first-child{margin-top:0}
+.posrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.posrow button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px;font-size:12px;line-height:1.2;text-align:center;font-weight:600}
+.posrow button b{display:inline-flex;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);align-items:center;justify-content:center;font-size:15px}
+.scen{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.scen button{text-align:left;font-weight:600;font-size:14px;padding:9px 10px;display:flex;gap:7px;align-items:center}
+.scen button::before{content:"▶";font-size:10px;opacity:.7}
+@media (max-width:420px){.scen{grid-template-columns:1fr}}
+.modes button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.modes button.on b{border-color:#fff8}
+#stepNo{white-space:nowrap}
+#stepHead{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:4px;font-weight:600}
+.dots{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;flex:1;min-width:0;margin-left:10px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.done{background:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.dots i.cur{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+#explain h3{margin:0 0 6px;font-size:18px}
+#explain p{margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+[hidden]{display:none!important}
+#partCard h3{margin:0 0 4px;font-size:16px}
+#partCard p{margin:0;color:var(--muted)}
+.gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+.g{display:grid;grid-template-columns:1fr auto;grid-template-areas:"l v" "b b";gap:3px 8px;align-items:baseline;font-size:14px}
+.g span{grid-area:l;color:var(--muted)}
+.g output{grid-area:v;font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.g .bar{grid-area:b;height:9px;border-radius:5px;background:var(--line);overflow:hidden}
+.g .bar b{display:block;height:100%;width:0}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+a.btnlink{display:block;text-align:center;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:var(--card);font-weight:600}
+a.btnlink:hover{border-color:var(--accent)}
+#tip{position:fixed;z-index:20;pointer-events:none;background:#101826;color:#fff;border:1px solid #ffffff40;border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.35;box-shadow:0 4px 14px #0006;max-width:270px}
+#tip b{display:block;font-size:13px}
+#tip .v{font-variant-numeric:tabular-nums;font-size:15px;font-weight:700}
+#tip small{opacity:.75;display:block}
+/* схема */
+#bubbles circle{fill:#fff;stroke:#1b2430;stroke-opacity:.75;stroke-width:.9;pointer-events:none}
+.gridl{stroke:#0004;stroke-width:.4}
+.gridt{font:7px sans-serif;fill:#c00}
+/* ---- полноэкранный режим (общий для всех приборов) ---- */
+.board{position:relative}
+.fsbtn{position:absolute;top:8px;right:8px;z-index:5;padding:5px 10px;font-size:13px;font-weight:600;background:#fff;color:#1b2430;border:1px solid #b9c2cc;opacity:.85}
+.fsbtn:hover{opacity:1}
+#fsExplain:empty{display:none}
+#fsPanel{display:none}
+.fsmode{position:fixed!important;inset:0;z-index:100;margin:0!important;border:0!important;border-radius:0!important;display:flex!important;flex-direction:column;background:var(--bg);padding:8px 16px!important;overflow:hidden}
+.fsmode .board{flex:none;margin:0 auto!important;max-width:none!important;aspect-ratio:auto!important}
+.fsmode svg#scheme{max-height:none!important}
+.fsmode #fsExplain{flex:none}
+.fsmode #fsExplain .card{margin:8px 0 0;padding:8px 14px;max-height:170px;overflow:auto}
+.fsmode #fsExplain h3{font-size:16px;margin:0 0 3px}
+.fsmode #fsExplain p{font-size:14.5px;line-height:1.4}
+.fsmode .gauges{margin-top:auto;padding-top:6px}
+.fsmode .hint{display:none}
+.fsmode #fsPanel{display:block;position:fixed;left:0;top:0;bottom:0;width:min(420px,92vw);transform:translateX(calc(-100% + 18px));transition:transform .18s ease;background:var(--card);border-right:1px solid var(--line);box-shadow:4px 0 18px #0005;z-index:110;overflow:hidden}
+.fsmode #fsPanel:hover{transform:none;overflow:auto}
+#fsTab{position:absolute;right:0;top:0;bottom:0;width:18px;writing-mode:vertical-rl;text-align:center;font-size:12px;font-weight:700;color:var(--muted);background:color-mix(in srgb,var(--accent) 18%,var(--card));display:flex;align-items:center;justify-content:center;letter-spacing:.06em}
+.fsmode #fsPanel:hover #fsTab{display:none}
+#fsBody{padding:12px 14px;margin-right:18px}
+.fsmode #fsPanel:hover #fsBody{margin-right:0}
+.fsmode .modes{margin-bottom:0}
+#tip{z-index:300!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="back" href="Интерактивное пособие 81-717-714.html">← К списку приборов</a></div>
+  <h1>Кран машиниста усл. № 334</h1>
+  <p class="sub">Золотниково-поршневой, непрямодействующий (ручная перекрыша) · электропоезда 81-717/714</p>
+
+  <div class="layout">
+    <div class="colL">
+      <div class="card">
+        <div class="board" id="board">
+          <canvas id="cv" width="1702" height="936" role="img" aria-label="Схема крана машиниста 334"></canvas>
+          <svg id="scheme" viewBox="0 0 851 468" aria-hidden="true">
+            <g id="paths" fill="none" stroke="none"></g>
+            <g id="bubbles"></g>
+            <g id="grid" hidden></g>
+          </svg>
+        </div>
+        <div class="gauges" id="gaugeCard">
+          <div class="g"><span>НМ, атм</span><output id="oNM"></output><div class="bar"><b id="bNM" style="background:#00b7ee"></b></div></div>
+          <div class="g"><span>ТМ, атм</span><output id="oTM"></output><div class="bar"><b id="bTM" style="background:#e8322b"></b></div></div>
+          <div class="g"><span>УР, атм</span><output id="oUR"></output><div class="bar"><b id="bUR" style="background:#2aa6c9"></b></div></div>
+        </div>
+        <p class="hint"><span id="approxTag"></span> Наведите мышку на камеру, канал или резервуар, чтобы увидеть давление; нажмите, чтобы прочитать описание.</p>
+      </div>
+    </div>
+
+    <div class="colR">
+      <div class="modes" id="modes">
+        <h2>Положение ручки</h2>
+        <div class="posrow">
+          <button data-pos="1"><b>1</b>Зарядка и отпуск</button>
+          <button data-pos="2"><b>2</b>Поездное</button>
+          <button data-pos="3"><b>3</b>Перекрыша</button>
+          <button data-pos="4"><b>4</b>Служебное</button>
+          <button data-pos="5"><b>5</b>Экстренное</button>
+        </div>
+        <h2>Пошагово</h2>
+        <div class="scen">
+          <button data-sc="charge">Зарядка с нуля</button>
+          <button data-sc="stages">Торможение ступенями</button>
+          <button data-sc="emergency">Экстренное торможение</button>
+          <button data-sc="full">Торможение и отпуск</button>
+        </div>
+      </div>
+
+      <div class="card" id="explain">
+        <div id="stepHead" hidden><span id="stepNo"></span><span class="dots" id="dots"></span></div>
+        <h3 id="mTitle"></h3>
+        <p id="mText"></p>
+        <div id="stepper" class="btns" hidden>
+          <button id="sFirst">⏮ Сначала</button>
+          <button id="sPrev">◀ Назад</button>
+          <button id="sNext" class="primary">Далее ▶</button>
+          <button id="sAuto">▶ Авто</button>
+        </div>
+      </div>
+
+      <div class="card" id="partCard" hidden>
+        <h2>Элемент</h2>
+        <h3 id="pTitle"></h3>
+        <p id="pText"></p>
+      </div>
+
+      <a class="btnlink" href="Редуктор 348.html">Редуктор 348: питает ТМ во 2-м положении →</a>
+    </div>
+  </div>
+  <div id="tip" role="tooltip" hidden></div>
+</div>
+
+<script src="Материалы/Кран 334 - рисунки (встроенные).js"></script>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const cl = (x,a,b)=>Math.max(a,Math.min(b,x));
+const f1 = x => x.toFixed(1).replace('.',',');
+const f2 = x => x.toFixed(2).replace('.',',');
+
+/* ---------- положения ручки ---------- */
+const POS = {
+ 1:{head:"1 — Зарядка и отпуск",
+    text:"НМ через сквозное окно золотника, глухую выемку зеркала и пещерообразную выемку золотника соединяется с ТМ. Вторым путём НМ через отверстие золотника идёт в ТМ через редуктор. Одновременно НМ двумя каналами заряжает уравнительный резервуар и надпоршневую камеру: они заряжаются быстрее, чем ТМ, поэтому поршень не поднимается и атмосферный клапан закрыт. Это положение может перезарядить ТМ до давления НМ, а вместе с ней и рабочую камеру воздухораспределителя, поэтому на практике 1-е положение не применяют: зарядку и отпуск выполняют во 2-м положении.",
+    vals:{ur:6.5,tm:6.0}, flow:"p1"},
+ 2:{head:"2 — Поездное",
+    text:"НМ через отверстие золотника и редуктор заряжает ТМ и поддерживает в ней 5,0 атм (допуск 4,8–5,2). ТМ через пещерообразную выемку золотника соединена с уравнительным резервуаром и надпоршневой камерой, поэтому давление в них одинаково с ТМ, и красная стрелка манометра показывает истинное давление в ТМ. Зарядка и отпуск тормозов выполняются именно в этом положении.",
+    vals:{ur:5.0,tm:5.0}, flow:"p2"},
+ 3:{head:"3 — Перекрыша",
+    text:"Глухая перекрыша: ни одно отверстие золотника не соединено с отверстиями зеркала. Нужна для ступенчатого торможения и отпуска. Перекрыша ручная, поэтому кран непрямодействующий. При долгой перекрыше ТМ отсоединена от НМ и снижается от утечек, и АВУ-045 сработает при 2,7–2,9 атм.",
+    vals:{ur:4.3,tm:4.3}, flow:null},
+ 4:{head:"4 — Служебное торможение",
+    text:"Уравнительный резервуар через дугообразную выемку золотника соединяется с атмосферой. Надпоршневая камера разряжается вместе с ним, давлением ТМ поршень поднимается, открывается атмосферный клапан, и ТМ идёт в атмосферу темпом 0,3 атм/с. Вид торможения зависит от глубины разрядки УР: когда красная стрелка дойдёт до нужного значения, ручку переводят в перекрышу.",
+    vals:{ur:4.5,tm:4.8}, flow:"p4"},
+ 5:{head:"5 — Экстренное торможение",
+    text:"ТМ через пещерообразную выемку золотника соединяется напрямую с атмосферой, темп разрядки 0,8–1,0 атм/с. Атмосферный клапан под уравнительным поршнем тоже открыт. Чувствительность уравнительного поршня 0,2 атм: поршень поднимается, когда давление под ним больше давления над ним на эту величину.",
+    vals:{ur:1.5,tm:2.0}, flow:"p5"}
+};
+const NM=8.0;
+
+/* ---------- области: названия и описание (по месту на схеме) ---------- */
+// координаты в системе рисунка 851×468; key: к какому давлению относится область (nm | ur | tm | any | atm)
+// порядок важен: сначала более частные области
+const REGIONS = [
+ {id:"cave",name:"Пещерообразная выемка золотника",key:"any",rects:[[280,128,160,40]],
+  desc:"Выемка в теле золотника. В 1-м положении через неё (вместе с глухой выемкой зеркала) НМ соединяется с ТМ, во 2-м через неё ТМ соединяется с УР и надпоршневой камерой, в 5-м она соединяет ТМ напрямую с атмосферой."},
+ {id:"arc",name:"Дугообразная выемка золотника",key:"ur",rects:[[470,140,90,28]],
+  desc:"Выемка в теле золотника у правого края. В 4-м положении через неё УР соединяется с атмосферой."},
+ {id:"pocket",name:"Глухая выемка зеркала",key:"ur",rects:[[200,168,100,42]],
+  desc:"Углубление в зеркале золотника, которое соединяет между собой окна золотника."},
+ {id:"chamber",name:"Золотниковая камера",key:"nm",rects:[[36,88,678,80]],
+  desc:"Камера над золотником. На кране, включённом в действие, в ней давление НМ: оно прижимает золотник к зеркалу и не даёт ему оторваться. Каждому положению ручки соответствует определённое положение золотника относительно отверстий зеркала."},
+ {id:"nmch",name:"Канал НМ",key:"nm",rects:[[127,185,25,253],[36,168,103,17]],
+  desc:"Канал НМ идёт от разобщительного крана двойной тяги вверх и под зеркалом уходит влево к золотниковой камере."},
+ {id:"nmred",name:"Канал НМ к редуктору",key:"nm",rects:[[540,168,20,110],[540,270,230,16],[600,270,20,90],[740,270,20,80]],
+  desc:"Через окно золотника НМ подводится к редуктору 348, который снижает давление до рабочего давления ТМ."},
+ {id:"ur",name:"Уравнительный резервуар (УР)",key:"ur",rects:[[0,290,77,146],[29,233,22,57]],
+  desc:"Резервуар объёмом 9,5 л. Искусственно увеличивает объём надпоршневой камеры, что обеспечивает ступенчатое торможение. При 2-м положении давление в нём такое же, как в ТМ."},
+ {id:"urline",name:"Канал УР и надпоршневой камеры",key:"ur",rects:[[0,233,530,15],[171,168,23,66],[319,168,8,66],[514,168,16,66]],
+  desc:"Каналы между УР, надпоршневой камерой и окнами зеркала. В них давление УР. Узкий канал 2,5 мм ограничивает темп разрядки УР при торможении."},
+ {id:"above",name:"Надпоршневая камера",key:"ur",rects:[[209,247,120,73],[259,247,23,16]],
+  desc:"Над уравнительным поршнем. Соединена с УР. Разрядка УР и надпоршневой камеры в 4-м положении приводит к подъёму поршня."},
+ {id:"below",name:"Подпоршневая камера",key:"tm",rects:[[209,320,120,50]],
+  desc:"Под уравнительным поршнем. Соединена с ТМ. Давлением ТМ поршень поднимается, когда давление над ним становится меньше на 0,2 атм, и открывает атмосферный клапан."},
+ {id:"rtm",name:"Редуктор 348: камеры питаемой магистрали (ТМ)",key:"tm",rects:[[560,280,300,160]],
+  desc:"Часть редуктора, в которой давление питаемой магистрали: камера над мембраной и подвод к ней. Подробно редуктор показан на отдельной странице."},
+ {id:"rnm",name:"Редуктор 348: камеры НМ",key:"nm",rects:[[560,280,300,160]],
+  desc:"Камеры редуктора, в которые подведена НМ: у питательного и у возбудительного клапанов. Подробно редуктор показан на отдельной странице."},
+ {id:"tmch",name:"Канал ТМ",key:"tm",rects:[[354,168,40,35],[367,203,28,235],[329,320,40,30],[394,402,248,14]],
+  desc:"Тормозная магистраль. Подводится снизу к золотнику и к подпоршневой камере, а также к редуктору 348."},
+ {id:"atm",name:"Атмосфера",key:"atm",rects:[[459,168,18,165],[459,312,66,21],[259,371,23,66]],
+  desc:"Каналы в атмосферу: от дугообразной выемки золотника и атмосферный клапан под уравнительным поршнем."}
+];
+const DEFAULT_INFO={
+  nm:{name:"Камера или канал НМ",desc:"Напорная магистраль: давление 6,3–8,2 атм."},
+  ur:{name:"Канал или камера УР",desc:"Канал, соединённый с уравнительным резервуаром и надпоршневой камерой."},
+  tm:{name:"Канал или камера ТМ",desc:"Тормозная магистраль."},
+  atm:{name:"Атмосфера",desc:"Выход в атмосферу."}
+};
+
+/* ---------- траектории воздуха (по каналам рисунка) ----------
+   Каждый путь начинается в камере-источнике, идёт по каналу и заканчивается в приёмнике; через отверстия
+   (окно золотника, дугообразную выемку, атмосферный клапан под поршнем, сужение 2,5 мм) воздух проходит только там, где они нарисованы. */
+const FLOWS = {
+ // 1-е положение
+ p1a:"M139 437V176H47V100H200", p1b:"M200 100H206V148L183 160V240H39.5V335", p1c:"M300 100H517V238", p1d:"M420 100H553V277.5H611V350",
+ p1e:"M553 277.5H750V345", p1f:"M213 100V160V195H287V150H371V165L378 185V437", p1g:"M700 408H394L380 420V437",
+ // НМ → золотниковая камера → окно золотника → редуктор → ТМ → выемка золотника → УР и надпоршневая камера
+ n1:"M139 437V176H47V100H200",                              // подвод НМ к крану
+ n2:"M200 100H547V150L551.5 160V277.5H611V350",             // золотниковая камера, окно золотника, вход в редуктор
+ n3:"M551.5 277.5H750V345",                                  // питание клапанов редуктора
+ r2t:"M700 408H394L380 420",                                 // выход редуктора к каналу ТМ
+ t_out:"M380 420V437",                                       // выход ТМ в магистраль состава
+ t_up:"M380 420V215V175L350 150H326V240H270",                // канал ТМ вверх, пещерообразная выемка золотника, канал УР
+ pst:"M270 240V275",                                          // надпоршневая камера
+ ur:"M270 240H39.5V335",                                      // уравнительный резервуар
+ // 4-е положение: УР и надпоршневая камера уходят в атмосферу через дугообразную выемку, ТМ — через атмосферный клапан под поршнем
+ u_vent:"M39.5 335V240H521.5V182V165L500 158H468V325H530",
+ pst_up:"M270 280V240H300",
+ tm_valve:"M380 437V345H330L300 352L270 362V437",
+ // 5-е положение: ТМ напрямую в атмосферу через пещерообразную выемку
+ e_tm:"M380 437V190V165L372 145H466V325H530", e_ur:"M39.5 335V240H521.5V165L500 157H466",
+ e_r1:"M611 350V277.5H551.5V175", e_r2:"M780 408H394L380 395V300"
+};
+const POSFL={ p1:['p1a','p1b','p1c','p1d','p1e','p1f','p1g'], p2:['n1','n2','n3','r2t','t_out','t_up','pst','ur'],
+              p4:['u_vent','pst_up','tm_valve'], p5:['e_tm','tm_valve','e_ur','e_r1','e_r2'] };
+const FLALL={fwd:['n1','n2','n3','r2t','t_out','t_up','pst','ur']};
+
+/* ---------- состояние ---------- */
+let pos=2, dyn=false;
+const V={tm:5.0,ur:5.0,nm:8.0};  // текущие давления (nm — НМ в самом кране)
+let approx=true;
+
+/* ---------- пузырьки ----------
+   Скорость пузырьков постоянная и небольшая, сила потока меняется плавно; направление меняется только после затухания. */
+const pathLayer=$('paths'), bubLayer=$('bubbles');
+const bub={items:[],want:{},tgt:{},cur:{},dir:{},wdir:{},speed:20,fade:0.9};
+for(const [g,d] of Object.entries(FLOWS)){
+  bub.tgt[g]=0; bub.cur[g]=0; bub.dir[g]=1; bub.wdir[g]=1;
+  const p=document.createElementNS(NS,'path'); p.setAttribute('d',d); pathLayer.appendChild(p);
+  const len=p.getTotalLength(), n=Math.max(3,Math.round(len/18)), circles=[];
+  for(let i=0;i<n;i++){
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('r',(1.6+0.8*((i*7)%5)/4).toFixed(2)); c.style.display='none'; bubLayer.appendChild(c); circles.push(c);
+  }
+  bub.items.push({p,len,g,circles,n,ph:(bub.items.length*0.37)%1});
+}
+const reduceMotion=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function updateBubbles(dt){
+  for(const g in bub.cur){
+    const w=(!trans)&&bub.want[g];                       // пока золотник переезжает, воздух не идёт
+    bub.tgt[g]=w?1:0; if(w) bub.wdir[g]=w<0?-1:1;
+    let goal=bub.tgt[g];
+    if(bub.wdir[g]!==bub.dir[g]){ goal=0; if(bub.cur[g]<0.02) bub.dir[g]=bub.wdir[g] }
+    const st=bub.fade*dt; bub.cur[g]=cl(bub.cur[g]+cl(goal-bub.cur[g],-Math.abs(st),Math.abs(st)),0,1);
+  }
+  for(const it of bub.items){
+    const k=bub.cur[it.g], dir=bub.dir[it.g];
+    it.ph=(it.ph+dt*bub.speed*dir/it.len)%1; if(it.ph<0) it.ph+=1;
+    for(let i=0;i<it.n;i++){
+      const c=it.circles[i];
+      if(k<0.03){ c.style.display='none'; continue }
+      let s=(i/it.n+it.ph)%1; if(dir<0) s=1-s;
+      const pt=it.p.getPointAtLength(s*it.len);
+      c.setAttribute('cx',pt.x.toFixed(1)); c.setAttribute('cy',pt.y.toFixed(1));
+      c.style.opacity=(Math.min(1,k*1.4)*Math.min(1,5*Math.min(s,1-s))).toFixed(2); c.style.display='';
+    }
+  }
+}
+/* какие пути работают: список имён (направление «вперёд») или объект {имя:-1} для обратного потока */
+function wantOf(list){ const o={}; if(Array.isArray(list)) for(const n of list) o[n]=1; else if(list) Object.assign(o,list); return o }
+
+/* ---------- показ положения ---------- */
+function showPos(p,fl){
+  const prev=pos; pos=p;
+  bub.want = fl===true ? wantOf(POSFL[POS[p].flow]) : wantOf(fl);
+  if(prev!==p && PIC[prev] && PIC[p] && !reduceMotion) trans={from:prev,to:p,t:0};   // золотник плавно переезжает
+}
+function setGauges(nm,tm,ur,isApprox){
+  $('oNM').textContent=f1(nm); $('oTM').textContent=(isApprox?'≈ ':'')+f2(tm); $('oUR').textContent=(isApprox?'≈ ':'')+f2(ur);
+  $('bNM').style.width=nm/8.5*100+'%'; $('bTM').style.width=tm/8.5*100+'%'; $('bUR').style.width=ur/8.5*100+'%';
+  $('approxTag').textContent=isApprox?'Значения давления для примера.':'Показаны текущие давления.';
+  V.nm=nm; V.tm=tm; V.ur=ur; approx=isApprox;
+}
+function setStatic(p){
+  dyn=false; shade=false; $('stepper').hidden=true; $('stepHead').hidden=true;
+  showPos(p,true);
+  $('mTitle').textContent=POS[p].head; $('mText').textContent=POS[p].text;
+  setGauges(NM,POS[p].vals.tm,POS[p].vals.ur,true);
+  document.querySelectorAll('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.pos===String(p)));
+}
+
+/* ---------- пошаговые сценарии ---------- */
+const EASE={lin:k=>k,out:k=>1-(1-k)*(1-k),io:k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2};
+const G={tm:5.0,ur:5.0,nm:8.0};
+const N0={tm:5.0,ur:5.0,nm:8.0};   // норма ТМ 5,0 атм (допуск 4,8–5,2), НМ 8 атм
+/* ступень торможения и отпуск разбиты на события: в одном шаге либо переезжает золотник (noflow: воздух не идёт), либо меняется давление */
+function stage(n,ur0,urT,tmT,tmH,drop,extra){
+  const long=n===1||n===4;
+  return [
+   {pos:4,dur:1.4,noflow:true,title:`Ступень ${n}: ручку переводят в 4-е положение`,
+    text:"Золотник перемещается, и дугообразная выемка соединяет УР и надпоршневую камеру с атмосферным каналом. Давление в камерах пока прежнее."},
+   {pos:4,dur:long?5:3.5,fl:['u_vent','pst_up'],to:{ur:urT},ease:{ur:'lin'},title:`УР и надпоршневая камера разряжаются на ${drop} атм (до ${f1(urT)})`,
+    text:`Воздух из УР и надпоршневой камеры уходит в атмосферу через дугообразную выемку золотника. Давление под поршнем (ТМ) пока прежнее, поэтому разность давлений на поршень растёт: когда она превысит его чувствительность 0,2 атм, поршень начнёт подниматься. Глубину ступени машинист контролирует по красной стрелке манометра (УР).`},
+   {pos:4,dur:long?3:2,fl:['tm_valve'],to:{tm:tmT},ease:{tm:'lin'},title:"Поршень открывает атмосферный клапан: ТМ разряжается",
+    text:"Поршень поднялся и открыл атмосферный клапан под собой: ТМ уходит в атмосферу, следуя за УР."},
+   {pos:3,dur:1.4,noflow:true,title:"Ручку переводят в 3-е положение: перекрыша",
+    text:"Машинист ставит ручку в перекрышу, как только УР разрядился на нужную величину. Золотник закрывает все отверстия, и разрядка УР прекращается."},
+   {pos:3,dur:3,to:{tm:tmH},title:"Поршень опускается: атмосферный клапан закрывается",
+    text:"Давление над поршнем (УР) перестало падать, разность давлений под ним и над ним стала меньше чувствительности 0,2 атм. Поршень опустился и закрыл атмосферный клапан, разрядка ТМ остановилась. ТМ остаётся чуть выше УР (на 0,1–0,15 атм). Ступень выполнена, тормозные цилиндры получили большее давление."+(extra?" "+extra:"")}
+  ];
+}
+function release2(dur,tail){
+  return [
+   {pos:2,dur:1.4,noflow:true,title:"Ручку ставят во 2-е положение",
+    text:"Золотник возвращается: ТМ снова соединяется с УР и надпоршневой камерой, а выпуск в атмосферу закрывается. Давление в камерах пока прежнее."},
+   {pos:2,dur,to:{tm:5.0,ur:5.0},ease:{ur:'out',tm:'out'},title:"Редуктор заряжает ТМ, УР и надпоршневую камеру до 5,0 атм",
+    text:"Редуктор 348 заряжает ТМ, УР и надпоршневую камеру вместе. По мере роста давления в ТМ тормоза отпускают. "+tail}
+  ];
+}
+const SCEN={
+ charge:{init:{tm:0,ur:0,nm:0},steps:[
+  {pos:2,dur:0.4,noflow:true,to:{tm:0,ur:0,nm:0},title:"Исходное состояние: краны двойной тяги закрыты",
+   text:"Состав стоит без воздуха. Ручка крана машиниста во 2-м положении, а разобщительные краны двойной тяги НМ и ТМ закрыты, поэтому кран выключен из действия: золотниковая камера, уравнительный резервуар, надпоршневая и подпоршневая камеры пусты (0 атм), на схеме они белые. Наведите мышку на любую камеру, чтобы увидеть давление."},
+  {pos:2,dur:3,fl:['n1','n2','n3'],to:{nm:8},ease:{nm:'out'},title:"Открывают кран двойной тяги НМ",
+   text:"Сначала открывается разобщительный кран НМ, и сжатый воздух НМ поступает в золотниковую камеру над золотником. Его давление прижимает золотник к зеркалу, и золотник не отрывается от него. Через окно золотника НМ подводится и к редуктору 348."},
+  {pos:2,dur:5,fl:['n1','n2','n3','r2t','t_up','pst','ur'],to:{tm:5.0,ur:5.0},ease:{tm:'out',ur:'out'},title:"Редуктор заряжает внутренние полости крана",
+   text:"Во 2-м положении НМ идёт через отверстие золотника и редуктор в канал ТМ. Через пещерообразную выемку золотника этот канал соединён с УР и надпоршневой камерой, поэтому они заряжаются вместе с ним. Кран ТМ ещё закрыт, и давление растёт только в самом кране."},
+  {pos:2,dur:2,fl:{n1:1,n2:1,n3:1,r2t:1,t_out:1,t_up:-1,pst:-1,ur:-1},to:{tm:2.4,ur:2.4},ease:{tm:'lin',ur:'lin'},title:"Открывают кран двойной тяги ТМ",
+   text:"Теперь открывается разобщительный кран ТМ, и подпоршневая камера соединяется с пустой тормозной магистралью состава. Давление в кране падает: воздух перетекает в магистраль, а УР и надпоршневая камера, соединённые с ТМ, снижаются вместе с ней."},
+  {pos:2,dur:14,to:{tm:5.0,ur:5.0},ease:{tm:'out',ur:'out'},title:"Редуктор заряжает тормозную магистраль состава",
+   text:"НМ через редуктор 348 заряжает ТМ всего состава. Давление в ТМ, в УР и в надпоршневой камере растёт одинаково, поэтому красная стрелка манометра показывает истинное давление в ТМ. Когда оно достигнет настройки редуктора, зарядка прекратится."},
+  {pos:2,dur:0.5,noflow:true,to:{tm:5.0,ur:5.0},title:"Зарядка завершена",
+   text:"ТМ и УР заряжены до 5,0 атм (допуск 4,8–5,2). Ручка остаётся во 2-м положении: редуктор сам поддерживает это давление. Зарядка с нуля выполняется во 2-м положении при последовательном открытии кранов двойной тяги: сначала НМ, затем ТМ."}
+ ]},
+ stages:{init:N0,steps:[
+  {pos:2,dur:0.4,noflow:true,to:{...N0},title:"Исходное состояние: поездное положение, ТМ 5,0 атм",
+   text:"Ручка во 2-м положении. ТМ заряжена до 5,0 атм (допуск 4,8–5,2), уравнительный резервуар и надпоршневая камера соединены с ТМ, поэтому давление везде одинаковое. Торможение будет выполнено в четыре ступени: разрядка 0,7–0,8, затем 0,3–0,4, 0,3–0,4 и снова 0,7–0,8 атм."},
+  ...stage(1,5.0,4.3,4.45,4.4,"0,7"),
+  ...stage(2,4.3,4.0,4.15,4.1,"0,3"),
+  ...stage(3,4.0,3.7,3.85,3.8,"0,3"),
+  ...stage(4,3.7,3.0,3.15,3.1,"0,7","Общая разрядка составила 2,0 атм (0,7 + 0,3 + 0,3 + 0,7), УР разряжен до 3,0 атм, ТМ держит давление: это полное служебное торможение."),
+  ...release2(12,"Для отпуска тормозов ручку ставят во 2-е положение (см. сценарий «Торможение и отпуск»)."),
+  {pos:2,dur:0.5,noflow:true,to:{tm:5.0,ur:5.0},title:"Отпуск завершён",
+   text:"ТМ и УР заряжены до 5,0 атм (допуск 4,8–5,2), редуктор поддерживает это давление. Тормоза отпущены."}
+ ]},
+ emergency:{init:N0,steps:[
+  {pos:2,dur:0.4,noflow:true,to:{...N0},title:"Исходное состояние: поездное положение",
+   text:"Ручка во 2-м положении, ТМ заряжена до 5,0 атм (допуск 4,8–5,2). Сейчас машинист переведёт ручку сразу в 5-е положение."},
+  {pos:5,dur:1.4,noflow:true,title:"Ручку переводят в 5-е положение",
+   text:"Золотник перемещается до упора: пещерообразная выемка соединяет ТМ напрямую с атмосферой. Давления в камерах пока прежние."},
+  {pos:5,dur:6,to:{tm:0.05,ur:0.1},ease:{tm:'lin',ur:'out'},title:"ТМ разряжается в атмосферу экстренным темпом",
+   text:"ТМ через пещерообразную выемку золотника выходит прямо в атмосферу и разряжается темпом 0,8–1,0 атм/с. Одновременно открыт атмосферный клапан под уравнительным поршнем, поэтому и подпоршневая камера выпускает воздух в атмосферу. УР тоже разряжается."},
+  {pos:5,dur:2,to:{tm:0.05,ur:0.1},title:"ТМ разряжена до нуля",
+   text:"Давление в ТМ упало почти до 0. Падение давления в ТМ вызывает торможение на всех вагонах состава: воздухораспределители наполняют тормозные цилиндры наибольшим давлением."},
+  ...release2(14,"1-е положение не используют, чтобы не перезарядить рабочую камеру воздухораспределителя.",true),
+  {pos:2,dur:0.5,noflow:true,to:{tm:5.0,ur:5.0},title:"Отпуск завершён",
+   text:"ТМ и УР заряжены до 5,0 атм (допуск 4,8–5,2), редуктор поддерживает это давление. Цикл завершён."}
+ ]},
+ full:{init:N0,steps:[
+  {pos:2,dur:0.4,noflow:true,to:{...N0},title:"Исходное состояние: поездное положение, ТМ заряжена",
+   text:"Ручка во 2-м положении. ТМ через редуктор заряжена до 5,0 атм (допуск 4,8–5,2), уравнительный резервуар и надпоршневая камера соединены с ТМ, поэтому давление везде одинаковое. Наведите мышку на любую камеру, чтобы увидеть давление."},
+  ...stage(1,5.0,4.3,4.45,4.4,"0,7"),
+  ...stage(2,4.3,4.0,4.15,4.1,"0,3"),
+  ...release2(12,"1-е положение для отпуска не используют, чтобы не перезарядить рабочую камеру воздухораспределителя."),
+  {pos:2,dur:0.5,noflow:true,to:{tm:5.0,ur:5.0},title:"Отпуск завершён",
+   text:"ТМ и УР заряжены до 5,0 атм (допуск 4,8–5,2), редуктор поддерживает это давление. Тормоза отпущены, цикл завершён."}
+ ]}
+};
+// у каждого шага конечное состояние содержит все давления (то, что не задано, переходит из предыдущего шага)
+for(const sc of Object.values(SCEN)){ let prev={...N0,...sc.init}; sc.init=prev; for(const s of sc.steps){ s.to={...prev,...s.to}; prev=s.to } }
+let STEPS=SCEN.full.steps, curSc='full', gi=0,gT=0,gFrom={...G},gAuto=false,gHold=0;
+const dotsEl=$('dots');
+function markOn(test){ document.querySelectorAll('#modes button').forEach(b=>b.classList.toggle('on',test(b))) }
+function renderStepUI(){
+  const s=STEPS[gi];
+  $('stepNo').textContent=`Шаг ${gi+1} из ${STEPS.length}`;
+  [...dotsEl.children].forEach((d,i)=>d.className=i<gi?'done':i===gi?'cur':'');
+  $('mTitle').textContent=s.title; $('mText').textContent=s.text;
+  $('sPrev').disabled=gi===0; $('sNext').disabled=gi===STEPS.length-1;
+}
+function enterStep(i,back){
+  gi=i; gT=0; gHold=0;
+  gFrom = i===0 ? {...SCEN[curSc].init} : back ? {...STEPS[i-1].to} : {...G};
+  showPos(STEPS[i].pos,STEPS[i].noflow?null:(STEPS[i].fl||true));   // воздух идёт по путям шага и не пропадает, пока шаг на экране
+  renderStepUI();
+}
+function updateDyn(dt){
+  const s=STEPS[gi]; gT+=dt; const k=cl(gT/s.dur,0,1);
+  for(const key of ['tm','ur','nm']){ const e=EASE[(s.ease&&s.ease[key])||'io'](k); G[key]=gFrom[key]+(s.to[key]-gFrom[key])*e }
+  if(k>=1 && gAuto){
+    gHold+=dt; if(gHold>2.6 && gi<STEPS.length-1) enterStep(gi+1);
+    if(gi===STEPS.length-1){gAuto=false;$('sAuto').textContent='▶ Авто'}
+  }
+  setGauges(G.nm,G.tm,G.ur,false);
+}
+function startScenario(name){
+  curSc=name; STEPS=SCEN[name].steps; dyn=true; shade=true; gAuto=false; $('sAuto').textContent='▶ Авто';
+  dotsEl.innerHTML=''; STEPS.forEach(()=>dotsEl.appendChild(document.createElement('i')));
+  $('stepper').hidden=false; $('stepHead').hidden=false;
+  Object.assign(G,SCEN[name].init);
+  markOn(b=>b.dataset.sc===name);
+  enterStep(0); setGauges(G.nm,G.tm,G.ur,false);
+}
+
+/* ---------- холст: рисунки положений с перекраской камер по давлению ---------- */
+const IW=1702, IH=936, cv=$('cv'), ctx=cv.getContext('2d'), board=$('board');
+// «семена»: точки внутри каналов и камер, по которым область получает своё давление (координаты 851×468)
+const SEEDS=[
+ ['nm',47,100],['nm',300,100],['nm',600,100],['nm',700,100],['nm',139,300],['nm',139,420],['nm',45,176],['nm',551.5,230],
+ ['ur',39,360],['ur',39,262],['ur',60,240],['ur',100,240],['ur',300,240],['ur',430,240],['ur',500,240],
+ ['ur',182,200],['ur',270,290],['ur',521,210],['ur',322,200]
+];
+// где у «слитых» областей (1-е положение: НМ и УР соединены окнами) проходит граница между УР и НМ
+const UR_RECTS=[[0,290,77,146],[29,233,22,57],[0,233,127,15],[152,233,375,15],[171,168,23,66],[319,168,8,66],[514,168,16,66],[200,168,100,42],[209,247,120,73],[259,247,23,16]];
+const inRects=(x,y,rs)=>{for(const r of rs) if(x>=r[0]&&x<r[0]+r[2]&&y>=r[1]&&y<r[1]+r[3]) return true; return false};
+const CYAN=[0,255,255];
+const mixc=(b,t)=>`rgb(${[0,1,2].map(i=>Math.round(255+(b[i]-255)*t)).join(',')})`;
+const PIC=[], RAW=[];
+let shade=false, hoverReg=-1, lastSig='';
+
+function build(img){
+  const c=document.createElement('canvas'); c.width=IW; c.height=IH;
+  const cx=c.getContext('2d'); cx.drawImage(img,0,0);
+  const id=cx.getImageData(0,0,IW,IH), d=id.data, N=IW*IH;
+  const kind=new Uint8Array(N);
+  for(let p=0;p<N;p++){ const r=d[p*4],g=d[p*4+1],b=d[p*4+2]; kind[p]=(r<25&&g>230&&b>230)?1:(r>230&&g<25&&b<25)?2:0 }
+  // связные области одного цвета
+  const comp=new Int32Array(N).fill(-1), comps=[], stack=new Int32Array(N);
+  for(let p=0;p<N;p++){
+    if(comp[p]!==-1||!kind[p]) continue;
+    const k=kind[p], ci=comps.length; let sp=0,n=0,miny=IH;
+    stack[sp++]=p; comp[p]=ci;
+    while(sp){
+      const q=stack[--sp]; n++; const qy=(q/IW)|0, qx=q-qy*IW; if(qy<miny) miny=qy;
+      if(qx>0   &&comp[q-1]===-1 &&kind[q-1]===k) {comp[q-1]=ci; stack[sp++]=q-1}
+      if(qx<IW-1&&comp[q+1]===-1 &&kind[q+1]===k) {comp[q+1]=ci; stack[sp++]=q+1}
+      if(qy>0   &&comp[q-IW]===-1&&kind[q-IW]===k){comp[q-IW]=ci; stack[sp++]=q-IW}
+      if(qy<IH-1&&comp[q+IW]===-1&&kind[q+IW]===k){comp[q+IW]=ci; stack[sp++]=q+IW}
+    }
+    comps.push({k,n,miny,keys:new Set()});
+  }
+  for(const [key,x,y] of SEEDS){
+    let done=false;
+    for(let rad=0;rad<=3&&!done;rad++) for(let dy=-rad;dy<=rad&&!done;dy++) for(let dx=-rad;dx<=rad&&!done;dx++){
+      const p=Math.round(y*2+dy)*IW+Math.round(x*2+dx);
+      if(p>=0&&p<N&&comp[p]>=0){ comps[comp[p]].keys.add(key); done=true }
+    }
+  }
+  for(const cm of comps){
+    if(cm.k===2){ cm.key = (cm.keys.size===0 && cm.miny>=438*2) ? null : 'tm' }      // красные стрелки вне корпуса не трогаем
+    else if(cm.keys.size===1) cm.key=[...cm.keys][0];
+    else if(cm.keys.size===0) cm.key='nm';
+    else cm.key='mix';                                                                   // НМ и УР соединены: делим по геометрии
+  }
+  // области = (связная область, давление)
+  const regOf=new Int16Array(N).fill(-1), regs=[], map=new Map(), counts=[];
+  for(let p=0;p<N;p++){
+    const ci=comp[p]; if(ci<0) continue; const cm=comps[ci]; if(cm.key===null) continue;
+    let key=cm.key;
+    if(key==='mix'){ const y=(p/IW)|0, x=p-y*IW; key=inRects(x/2,y/2,UR_RECTS)?'ur':'nm' }
+    const mk=ci*4+(key==='nm'?0:key==='ur'?1:2);
+    let ri=map.get(mk);
+    if(ri===undefined){ ri=regs.length; map.set(mk,ri); regs.push({key,color:cm.k,pix:null}); counts.push(0) }
+    regOf[p]=ri; counts[ri]++;
+  }
+  for(let i=0;i<regs.length;i++){ regs[i].pix=new Int32Array(counts[i]); counts[i]=0 }
+  for(let p=0;p<N;p++){ const ri=regOf[p]; if(ri>=0) regs[ri].pix[counts[ri]++]=p }
+  // положение золотника на этом рисунке: левый и правый край жёлтых блоков и ось штока (в пикселях рисунка 2×)
+  let sx0=IW, sx1=0, sm=0, sn=0;
+  for(let y=113*2;y<166*2;y++) for(let x=0;x<IW;x++){ const o=(y*IW+x)*4; if(d[o]>240&&d[o+1]>240&&d[o+2]<40){ if(x<sx0)sx0=x; if(x>sx1)sx1=x } }
+  for(let y=92*2;y<106*2;y++) for(let x=0;x<IW;x++){ const o=(y*IW+x)*4; if(d[o]>240&&d[o+1]>240&&d[o+2]<40){ sm+=x; sn++ } }
+  return {base:new Uint8ClampedArray(d), cur:id, regs, regOf, sp:{x0:sx0,x1:sx1,stem:sn?sm/sn:(sx0+sx1)/2}};
+}
+function shadeInto(P,hoverIdx){
+  const d=P.cur.data; d.set(P.base);
+  for(let ri=0;ri<P.regs.length;ri++){
+    const r=P.regs[ri];
+    let t=1; if(shade) t=Math.pow(cl(V[r.key]/5.0,0,1),0.8);   // полный цвет при 5 атм и выше
+    const hov=ri===hoverIdx;
+    if(t>=0.999 && !hov) continue;
+    let R,G,B;
+    if(r.color===1){R=255*(1-t);G=255;B=255} else {R=255;G=255*(1-t);B=255*(1-t)}
+    if(hov){R=R*0.62+255*0.38; G=G*0.62+138*0.38; B=B*0.62}                   // оранжевая подсветка под курсором
+    const pix=r.pix;
+    for(let i=0;i<pix.length;i++){ const o=pix[i]*4; d[o]=R; d[o+1]=G; d[o+2]=B }
+  }
+}
+/* плавный сдвиг золотника при смене положения: золотник, шток, рукоятка и грундбукса едут как одно целое,
+   корпус с каналами (нижняя часть рисунка) меняется на середине движения */
+const off=document.createElement('canvas'); off.width=IW; off.height=IH; const offCtx=off.getContext('2d');
+let trans=null;
+const smooth=t=>t*t*(3-2*t);
+function renderTrans(){
+  const A=PIC[trans.from], B=PIC[trans.to], t=smooth(cl(trans.t,0,1));
+  const useA=t<0.5, X=useA?A:B;
+  shadeInto(X,-1); offCtx.putImageData(X.cur,0,0); ctx.drawImage(off,0,0);
+  const shift=(B.sp.x0-A.sp.x0)*(useA?t:-(1-t));
+  const s=X.sp, w=s.x1-s.x0+1, tx=Math.round(s.stem-380), tw=520;
+  const tn=shade?Math.pow(cl(V.nm/5,0,1),0.8):1;
+  ctx.fillStyle=mixc(CYAN,tn); ctx.fillRect(s.x0,175,w,160);        // убрать золотник из камеры (она заполнена НМ)
+  ctx.fillStyle='#fff';        ctx.fillRect(tx,0,tw,154);           // убрать шток, рукоятку и грундбуксу
+  ctx.fillStyle='#808080';     ctx.fillRect(tx,154,tw,21);          // верхняя стенка корпуса
+  ctx.drawImage(off,s.x0,175,w,160,s.x0+shift,175,w,160);
+  ctx.drawImage(off,tx,0,tw,175,tx+shift,0,tw,175);
+}
+function renderCanvas(){
+  if(trans && PIC[trans.from] && PIC[trans.to]){ renderTrans(); lastSig=''; return }
+  const P=PIC[pos];
+  if(!P){ const r=RAW[pos]; if(r && lastSig!=='raw'+pos){ ctx.drawImage(r,0,0); lastSig='raw'+pos } return }
+  const sig=pos+'|'+(shade?1:0)+'|'+Math.round(V.nm*40)+'|'+Math.round(V.tm*40)+'|'+Math.round(V.ur*40)+'|'+hoverReg;
+  if(sig===lastSig) return; lastSig=sig;
+  shadeInto(P,hoverReg);
+  ctx.putImageData(P.cur,0,0);
+}
+function loadAll(){
+  // рисунки встроены в «Материалы/Кран 334 - рисунки (встроенные).js» (data-URL), чтобы страница работала и при открытии как файл
+  const srcOf=k=>(typeof KRAN_IMG!=='undefined'&&KRAN_IMG[k])||`Материалы/Кран 334 - положение ${k}.png`;
+  let pending=5;
+  for(let k=1;k<=5;k++){
+    const img=new Image();
+    img.onload=()=>{ RAW[k]=img; lastSig=''; if(--pending===0) buildNext(1) };
+    img.onerror=()=>{ console.error('Не загрузился рисунок положения '+k); if(--pending===0) buildNext(1) };
+    img.src=srcOf(k);
+  }
+  function buildNext(k){
+    if(k>5) return;
+    setTimeout(()=>{
+      try{ PIC[k]=build(RAW[k]) }
+      catch(e){ console.error('Разбор рисунка '+k+' не удался (смена положений останется, закраска и подсказки недоступны):',e) }
+      lastSig=''; buildNext(k+1);
+    },0);
+  }
+}
+
+/* ---------- подсказка, подсветка и описание ---------- */
+const tip=$('tip');
+function pressureOf(key){ return key==='atm'?0 : V[key] }
+function infoFor(x,y,key){
+  for(const r of REGIONS){
+    if(r.key===key || (r.key==='any'&&key!=='atm')){
+      for(const [rx,ry,rw,rh] of r.rects) if(x>=rx&&x<rx+rw&&y>=ry&&y<ry+rh) return r;
+    }
+  }
+  return DEFAULT_INFO[key];
+}
+function hit(e){
+  const r=board.getBoundingClientRect(), fx=(e.clientX-r.left)/r.width, fy=(e.clientY-r.top)/r.height;
+  if(fx<0||fx>1||fy<0||fy>1) return null;
+  const x=fx*851, y=fy*468, P=PIC[pos];
+  if(P){
+    const px=Math.min(IW-1,Math.floor(fx*IW)), py=Math.min(IH-1,Math.floor(fy*IH));
+    const ri=P.regOf[py*IW+px];
+    if(ri>=0){ const key=P.regs[ri].key; return {ri,key,info:infoFor(x,y,key)} }
+  }
+  const a=REGIONS.find(q=>q.key==='atm'&&q.rects.some(([rx,ry,rw,rh])=>x>=rx&&x<rx+rw&&y>=ry&&y<ry+rh));
+  return a ? {ri:-1,key:'atm',info:a} : null;
+}
+function showTip(h,x,y){
+  const p=pressureOf(h.key);
+  const val = h.key==='atm' ? '0 атм (атмосфера)' : (approx&&h.key!=='nm'?'≈ ':'')+f2(p)+' атм';
+  const note = approx&&h.key!=='nm' ? 'значение для примера; живое давление и закраска — в пошаговых режимах' : '';
+  tip.innerHTML=`<b>${h.info.name}</b><span class="v">${val}</span>${note?`<small>${note}</small>`:''}`;
+  tip.hidden=false;
+  const w=tip.offsetWidth,hh=tip.offsetHeight;
+  tip.style.left=Math.min(x+14,innerWidth-w-8)+'px'; tip.style.top=(y+hh+22>innerHeight?y-hh-10:y+16)+'px';
+}
+function pointerOver(e){
+  const h=hit(e);
+  hoverReg = h ? h.ri : -1;
+  board.classList.toggle('hov',!!h);
+  if(h) showTip(h,e.clientX,e.clientY); else tip.hidden=true;
+}
+board.addEventListener('pointermove',pointerOver);
+board.addEventListener('pointerdown',pointerOver);
+board.addEventListener('pointerleave',()=>{hoverReg=-1; tip.hidden=true; board.classList.remove('hov')});
+board.addEventListener('click',e=>{
+  const h=hit(e);
+  if(h){ $('pTitle').textContent=h.info.name; $('pText').textContent=h.info.desc; $('partCard').hidden=false }
+  else $('partCard').hidden=true;
+});
+
+/* ---------- управление ---------- */
+document.querySelectorAll('#modes button').forEach(b=>b.addEventListener('click',()=>{
+  if(b.dataset.sc) startScenario(b.dataset.sc); else setStatic(+b.dataset.pos);
+}));
+$('sNext').onclick=()=>{ if(gi<STEPS.length-1) enterStep(gi+1) };
+$('sPrev').onclick=()=>{ if(gi>0) enterStep(gi-1,true) };
+$('sFirst').onclick=()=>{ gAuto=false; $('sAuto').textContent='▶ Авто'; Object.assign(G,SCEN[curSc].init); enterStep(0) };
+$('sAuto').onclick=()=>{
+  gAuto=!gAuto; $('sAuto').textContent=gAuto?'⏸ Стоп авто':'▶ Авто';
+  if(gAuto && gi===STEPS.length-1) enterStep(0);
+};
+
+/* ---------- сетка для разметки (адрес?grid) ---------- */
+if(location.search.includes('grid')){
+  const g=$('grid'); g.hidden=false; let h='';
+  for(let x=0;x<=851;x+=10) h+=`<line class="gridl" x1="${x}" y1="0" x2="${x}" y2="468"${x%50?'':' style="stroke-width:.9"'}/>`+(x%50?'':`<text class="gridt" x="${x+1}" y="8">${x}</text>`);
+  for(let y=0;y<=468;y+=10) h+=`<line class="gridl" x1="0" y1="${y}" x2="851" y2="${y}"${y%50?'':' style="stroke-width:.9"'}/>`+(y%50?'':`<text class="gridt" x="1" y="${y-1}">${y}</text>`);
+  g.innerHTML=h; g.style.pointerEvents='none';
+  const dbg=document.createElementNS(NS,'g'); dbg.id='dbgPaths'; $('scheme').appendChild(dbg);
+}
+
+/* ---------- цикл ---------- */
+let last=performance.now();
+function frame(now){
+  const dt=Math.min(0.1,(now-last)/1000); last=now;
+  if(dyn) updateDyn(dt);
+  if(trans){ trans.t+=dt/0.9; if(trans.t>=1){ trans=null; lastSig='' } }
+  updateBubbles(reduceMotion?0:dt);
+  renderCanvas();
+  requestAnimationFrame(frame);
+}
+loadAll();
+setStatic(1);
+requestAnimationFrame(frame);
+
+/* ---------- полноэкранный режим: схема + скрытое меню слева (открывается при наведении) ---------- */
+(function(){
+  const stage=document.querySelector('.colL > .card'), modes=document.getElementById('modes'), explain=document.getElementById('explain'), part=document.getElementById('partCard');
+  if(!stage||!modes||!explain) return;
+  const board=stage.querySelector('.board'), svg=stage.querySelector('svg#scheme'); if(!board) return;
+  const colR=modes.parentNode, par=svg&&svg.getAttribute('preserveAspectRatio');
+  const btn=document.createElement('button'); btn.className='fsbtn'; btn.textContent='⛶ На весь экран'; btn.title='Открыть схему на весь экран'; board.appendChild(btn);
+  const holder=document.createElement('div'); holder.id='fsExplain'; board.after(holder);
+  const panel=document.createElement('div'); panel.id='fsPanel'; panel.innerHTML='<div id="fsTab">☰ Управление</div><div id="fsBody"></div>'; stage.appendChild(panel);
+  const body=panel.querySelector('#fsBody');
+  const vb=svg&&svg.viewBox&&svg.viewBox.baseVal;
+  const ratio=()=>+stage.dataset.fsratio||(vb&&vb.width?vb.width/vb.height:board.clientWidth/board.clientHeight);
+  let r0=0;
+  function fit(){
+    if(!stage.classList.contains('fsmode')) return;
+    const cs=getComputedStyle(stage), g=stage.querySelector('.gauges');
+    const used=(g?g.offsetHeight+10:0)+(holder.offsetHeight?Math.max(holder.offsetHeight,70):0)+(parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom))+14;
+    const avail=stage.clientHeight-used, availW=stage.clientWidth-(parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight));
+    const w=Math.max(300,Math.min(availW,avail*r0));
+    board.style.width=w+'px'; board.style.height=(w/r0)+'px';
+  }
+  function enter(){
+    r0=ratio(); stage.classList.add('fsmode'); btn.textContent='✕ Выйти';
+    body.appendChild(modes); holder.appendChild(explain); if(part) holder.appendChild(part);
+    if(svg&&par==='none') svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+    const p=stage.requestFullscreen&&stage.requestFullscreen(); if(p&&p.catch) p.catch(()=>{});   // если браузер не разрешил, остаётся режим «поверх страницы»
+    fit(); setTimeout(fit,60); setTimeout(fit,300);
+  }
+  function leave(){
+    stage.classList.remove('fsmode'); btn.textContent='⛶ На весь экран'; board.style.width=''; board.style.height='';
+    colR.appendChild(modes); colR.appendChild(explain); if(part) colR.appendChild(part);
+    if(svg&&par==='none') svg.setAttribute('preserveAspectRatio',par);
+  }
+  btn.addEventListener('click',e=>{ e.stopPropagation(); if(stage.classList.contains('fsmode')){ if(document.fullscreenElement) document.exitFullscreen(); else leave() } else enter() });
+  document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&stage.classList.contains('fsmode')) leave(); else fit() });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&stage.classList.contains('fsmode')&&!document.fullscreenElement) leave() });
+  addEventListener('resize',fit);
+  new MutationObserver(fit).observe(holder,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+</body>
+</html>

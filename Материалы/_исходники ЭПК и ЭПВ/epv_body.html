@@ -1,0 +1,236 @@
+<style>
+.board{aspect-ratio:662/374;width:min(100%,calc((100vh - 190px)*662/374))}
+.steps{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.steps button{padding:7px 12px;font-weight:700}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.dots button{padding:4px 10px;font-size:13px;border-radius:999px}
+.dots button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.dots button.done{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.stbtn{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.stbtn button{font-weight:700;text-align:left}
+.stbtn button small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.stbtn button.on small{color:#ffffffd0}
+.bub{fill:#fff;stroke:#1a5f8f;stroke-width:1.2;pointer-events:none}
+.bub.r{stroke:#9a1010}
+.edot{fill:#fff3b0;stroke:#b36b00;stroke-width:1.2;pointer-events:none}
+.lbl{font:700 11px system-ui,Arial,sans-serif;fill:#111;pointer-events:none}
+#swhit{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="Интерактивное пособие 81-717-714.html#tm">← К списку приборов</a>
+  <h1>%%H1%%</h1>
+  <p class="sub">%%SUB%%</p>
+
+  <div class="layout">
+    <div class="colL">
+      <div class="card">
+        <div class="board" id="board">
+          <svg id="scheme" viewBox="0 0 662 374" role="img" aria-label="%%H1%%">
+            <rect x="0" y="0" width="662" height="374" fill="#fff"/>
+%%LAYERS%%
+            <g id="gauge"></g>
+            <g id="sticker">
+              <rect x="147" y="137" width="64" height="21" rx="5" fill="#ffee00" stroke="#222" stroke-width="1.2"/>
+              <text id="stTxt" x="179" y="152" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-weight="700" font-size="11" fill="#d01010">0 кГс/см²</text>
+            </g>
+            <text class="lbl" x="118" y="131">ТМ</text>
+            <text class="lbl" x="118" y="186">НМ</text>
+            <text class="lbl" x="241" y="214" fill="#c01010" style="fill:#c01010">ТМ</text>
+            <g id="wires" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <path id="wRed" d="M513 75 H618 V329 H578" stroke="#7a7a7a" stroke-width="2.6"/>
+              <path d="M513 114 V340 H544" stroke="#111" stroke-width="2.4"/>
+              <path d="M513 340 V356 M503 356 H523 M506 360 H520 M509 364 H517" stroke="#111" stroke-width="2"/>
+            </g>
+            <g id="sw">
+              <circle cx="561" cy="328" r="18" fill="#2ee32e" stroke="#111" stroke-width="1.2"/>
+              <circle cx="545" cy="334" r="2.2" fill="#111"/><circle cx="577" cy="329" r="2.2" fill="#111"/>
+              <line id="swL" x1="545" y1="334" x2="577" y2="329" stroke="#111" stroke-width="2.4" stroke-linecap="round"/>
+              <rect x="528" y="264" width="78" height="41" fill="#fff200" stroke="#d63ad6" stroke-width="2"/>
+              <text class="lbl" x="567" y="281" text-anchor="middle" style="font-size:12px">Система</text>
+              <text class="lbl" x="567" y="297" text-anchor="middle" style="font-size:12px">АРС</text>
+              <path d="M561 305 V312" stroke="#d63ad6" stroke-width="3"/><path d="M556 309 L561 315 L566 309 Z" fill="#d63ad6"/>
+              <text class="lbl" x="598" y="352" style="font-size:12px">+70В</text>
+            </g>
+            <g id="flows"></g>
+            <g id="hits"></g>
+          </svg>
+        </div>
+        <div class="gauges chips" id="chips"></div>
+        <p class="hint">Нажмите на выключатель системы АРС (зелёный круг) или включите нужное состояние. Красный провод под напряжением — ЭПВ закрыт, воздух заперт; без напряжения — атмосферный канал открыт, ТМ разряжается. Наведите мышку на деталь, чтобы увидеть её состояние, нажмите — прочитать описание.</p>
+      </div>
+    </div>
+    <div class="colR">
+      <div class="card modes" id="modes">
+        <h2>Состояние</h2>
+        <div class="stbtn" id="stbtn">
+          <button data-s="0">Под питанием<small>ЭПВ закрыт, ТМ заряжена</small></button>
+          <button data-s="4">Без питания<small>ТМ разряжается до 0</small></button>
+        </div>
+        <h2>Сценарий по шагам</h2>
+        <div class="steps">
+          <button id="bPrev">◀ Назад</button><button id="bNext">Дальше ▶</button><button id="bAuto">▶ Авто</button>
+        </div>
+        <div class="dots" id="dots"></div>
+        <div class="rowx"><span class="lab">Скорость</span>
+          <span class="speed" id="speed"><button data-s="0.6">0,6×</button><button data-s="1" class="sel">1×</button><button data-s="1.6">1,6×</button></span>
+        </div>
+      </div>
+      <div class="card" id="explain">
+        <h3 id="mTitle"></h3>
+        <div id="mText"></div>
+      </div>
+      <div class="card" id="partCard" hidden>
+        <h2>Деталь</h2>
+        <h3 id="pTitle"></h3>
+        <p id="pText"></p>
+      </div>
+    </div>
+  </div>
+  <div id="tip" role="tooltip" hidden></div>
+</div>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const mk = (tag,at,par)=>{ const e=document.createElementNS(NS,tag); for(const k in at) e.setAttribute(k,at[k]); if(par) par.appendChild(e); return e };
+
+/* ---------- манометр ---------- */
+const GC=[61,63], NM_P=8.2, TM_FULL=5.2;
+{ const g=$('gauge'); mk('circle',{cx:GC[0],cy:GC[1],r:53,fill:'#fff',stroke:'#111','stroke-width':7},g);
+  const ang=v=>(v-8)*16.875*Math.PI/180;
+  for(let v=0;v<=16;v++){ const a=ang(v), s=Math.sin(a), c=-Math.cos(a);
+    mk('line',{x1:GC[0]+s*45,y1:GC[1]+c*45,x2:GC[0]+s*49,y2:GC[1]+c*49,stroke:'#111','stroke-width':1},g);
+    const t=mk('text',{x:GC[0]+s*35,y:GC[1]+c*35+3.4,'text-anchor':'middle','font-size':9.5,'font-weight':700,'font-family':'system-ui,Arial,sans-serif',fill:'#111'},g); t.textContent=v; }
+  const u=mk('text',{x:GC[0],y:GC[1]+34,'text-anchor':'middle','font-size':6,'font-family':'system-ui,Arial,sans-serif',fill:'#333'},g); u.textContent='кгс/см²';
+  window.needleNM=mk('path',{fill:'#111'},g); window.needleTM=mk('path',{fill:'#e01010'},g);
+  mk('circle',{cx:GC[0],cy:GC[1],r:3.4,fill:'#111'},g); }
+function needle(el,v,len,w){ const a=(v-8)*16.875*Math.PI/180, s=Math.sin(a), c=-Math.cos(a), px=-c, py=s; const [x,y]=GC;
+  el.setAttribute('d',`M${x+px*w} ${y+py*w} L${x+s*len} ${y+c*len} L${x-px*w} ${y-py*w} L${x-s*9} ${y-c*9} Z`) }
+
+/* ---------- состояние ---------- */
+const S={sw:1,rod:1,box:1,tm:TM_FULL,vent:0,cur:1};   // sw — выключатель АРС, rod — клапан ЭПВ (1 — закрыт), box — выпускной клапан ТМ (1 — закрыт), tm — давление в ТМ, vent — открытость выпуска
+const MV={rod:[0,-6],box:[0,-8]};
+const GR={}; document.querySelectorAll('g.mv').forEach(g=>GR[g.dataset.p]=g);
+function draw(){
+  for(const n in GR){ const t=S[n]; GR[n].setAttribute('transform',`translate(${(t*MV[n][0]).toFixed(2)} ${(t*MV[n][1]).toFixed(2)})`) }
+  needle(needleNM,NM_P,38,1.7); needle(needleTM,S.tm,36,2.1);
+  $('stTxt').textContent=(Math.round(S.tm*10)/10).toFixed(1).replace('.',',')+' кГс/см²';
+  const live=S.sw>0.5; $('wRed').setAttribute('stroke',live?'#ee1c24':'#7a7a7a');
+  const sa=S.sw; const y2=334-sa*5; $('swL').setAttribute('y2',(329+(1-sa)*(-12)).toFixed(1)); $('swL').setAttribute('x2',(577-(1-sa)*4).toFixed(1));
+}
+
+/* ---------- воздух и ток ---------- */
+const FP={
+ pipe:{d:'M334 85 L393 85 L393 155 L456 155 L468 150 L486 148 L522 148',cls:''},
+ nm:  {d:'M50 150 L50 187 L143 187 L170 186',cls:''},
+ sl1: {d:'M214 232 L180 241 L140 252',cls:'r'}, sl2:{d:'M214 238 L176 232 L138 236',cls:'r'}, sl3:{d:'M214 242 L182 252 L150 262',cls:'r'},
+ sr1: {d:'M286 232 L318 241 L352 252',cls:'r'}, sr2:{d:'M286 238 L322 232 L354 236',cls:'r'}, sr3:{d:'M286 242 L316 252 L348 262',cls:'r'}
+};
+const flows={};
+for(const k in FP){ const p=mk('path',{d:FP[k].d,fill:'none',stroke:'none'},$('flows')); const len=p.getTotalLength(); const n=Math.max(3,Math.round(len/12)); const dots=[]; for(let i=0;i<n;i++) dots.push(mk('circle',{r:0,class:'bub '+FP[k].cls},$('flows'))); flows[k]={p,len,n,dots,ph:Math.random(),cur:0,ps:Math.random()*6} }
+const wire={p:mk('path',{d:'M578 329 H618 V75 H513',fill:'none',stroke:'none'},$('flows'))}; wire.len=wire.p.getTotalLength(); wire.n=Math.round(wire.len/26); wire.dots=[]; for(let i=0;i<wire.n;i++) wire.dots.push(mk('circle',{r:0,class:'edot'},$('flows'))); wire.ph=0;
+function strength(k){
+  const open=1-S.rod, frac=0.3+0.7*Math.max(0,Math.min(1,S.tm/TM_FULL));
+  if(k==='pipe'||k==='nm') return open;
+  return (1-S.box)*frac*(S.tm>0.05?1:0.25);
+}
+let last=performance.now(), speedK=1;
+function frame(now){
+  const dt=Math.min(0.1,Math.max(0,(now-last)/1000)); last=now;
+  stepAnim(dt);
+  for(const k in flows){ const f=flows[k]; const s=Math.max(0,Math.min(1,strength(k)));
+    f.cur+=(s-f.cur)*Math.min(1,dt*3.5); f.ph=(f.ph+dt*speedK*26/f.len)%1;
+    for(let i=0;i<f.n;i++){ const u=(i/f.n+f.ph)%1; const q=f.p.getPointAtLength(u*f.len); const c=f.dots[i];
+      const r=f.cur*(3.2+1.4*Math.sin(u*9+i*2+f.ps))*Math.max(.4,Math.sin(Math.PI*u));
+      c.setAttribute('cx',q.x.toFixed(1)); c.setAttribute('cy',q.y.toFixed(1)); c.setAttribute('r',Math.max(0,r).toFixed(2)); c.setAttribute('opacity',(f.cur*.95).toFixed(2)); } }
+  wire.ph=(wire.ph+dt*speedK*60/wire.len)%1; const cw=S.sw>0.5?1:0;
+  for(let i=0;i<wire.n;i++){ const q=wire.p.getPointAtLength(((i/wire.n+wire.ph)%1)*wire.len); const c=wire.dots[i]; c.setAttribute('cx',q.x.toFixed(1)); c.setAttribute('cy',q.y.toFixed(1)); c.setAttribute('r',(3.2*cw).toFixed(2)); }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- сценарий ---------- */
+const STEPS=[
+ {t:'Питание подано: система АРС включена',tg:{sw:1,rod:1,box:1,tm:TM_FULL},d:1.2,
+  txt:`<p>Контакт системы АРС замкнут, на катушку <b class="k">ЭПВ-АРС</b> подано напряжение +70 В. Электромагнит удерживает клапан закрытым — <b class="k">атмосферный канал ЭПВ перекрыт</b>.</p><p>Камера над диафрагмой реле давления соединена только с трубопроводом и заперта, давление в ней держится. Выпускной клапан ТМ закрыт, магистраль заряжена — манометр показывает давление ТМ около 5 кгс/см².</p>`},
+ {t:'Система АРС снимает питание',tg:{sw:0,rod:1,box:1,tm:TM_FULL},d:1.0,
+  txt:`<p>По команде от системы АРС контакт размыкается, и катушка ЭПВ теряет питание (красный провод становится серым).</p><p>Клапан ЭПВ ещё не успел сдвинуться: электромагнит отпускает его, но воздух пока заперт.</p>`},
+ {t:'ЭПВ открывает атмосферный канал',tg:{sw:0,rod:0,box:1,tm:TM_FULL},d:1.1,
+  txt:`<p>Клапан ЭПВ опускается и открывает атмосферное отверстие: камера над диафрагмой реле давления через трубопровод сообщается с атмосферой.</p><p>Воздух из камеры, а также из НМ через сужение 2,5 мм уходит в то же отверстие ЭПВ — на схеме показано движением частиц по трубке справа.</p>`},
+ {t:'Открывается выпускной клапан ТМ',tg:{sw:0,rod:0,box:0,tm:TM_FULL},d:1.1,
+  txt:`<p>Давление над диафрагмой падает, диафрагма реле давления прогибается, и выпускной клапан <b class="k">открывает выход ТМ в атмосферу</b> (в нижней части реле).</p>`},
+ {t:'Тормозная магистраль разряжается до 0',tg:{sw:0,rod:0,box:0,tm:0},d:4.0,
+  txt:`<p>Воздух из ТМ выходит в атмосферу двумя струями, давление в магистрали падает до нуля — стрелка манометра ТМ (красная) идёт к нулю, а на табло показывается 0 кГс/см². Происходит <b class="k">экстренное пневматическое торможение</b>.</p><p>На вагонах с краном машиниста 013 электропневматический вентиль ЭПВ-АРС выполняет функции ЭПК.</p>`},
+ {t:'Питание подано снова',tg:{sw:1,rod:1,box:1,tm:TM_FULL},d:3.0,
+  txt:`<p>После восстановления питания катушка снова притягивает клапан, атмосферный канал ЭПВ закрывается, давление над диафрагмой восстанавливается, выпускной клапан ТМ закрывается, и магистраль заряжается.</p>`}
+];
+let si=0, anim=null, auto=null;
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function stepAnim(dt){
+  if(!anim) return; anim.t+=dt*speedK; const u=Math.min(1,anim.t/anim.d), e=ease(u);
+  for(const k in anim.to) S[k]=anim.from[k]+(anim.to[k]-anim.from[k])*e;
+  if(u>=1) anim=null; draw(); refreshChips();
+}
+function go(i,instant){
+  si=Math.max(0,Math.min(STEPS.length-1,i)); const s=STEPS[si];
+  if(instant){ Object.assign(S,s.tg); anim=null; draw(); } else anim={from:Object.assign({},S),to:s.tg,t:0,d:s.d};
+  $('mTitle').textContent=(si+1)+'. '+s.t; $('mText').innerHTML=s.txt;
+  document.querySelectorAll('#dots button').forEach((b,j)=>{ b.classList.toggle('on',j===si); b.classList.toggle('done',j<si) });
+  document.querySelectorAll('#stbtn button').forEach(b=>b.classList.toggle('on',+b.dataset.s===si));
+  $('bPrev').disabled=si===0; $('bNext').disabled=si===STEPS.length-1; refreshChips();
+}
+for(let i=0;i<STEPS.length;i++){ const b=document.createElement('button'); b.textContent=i+1; b.title=STEPS[i].t; b.onclick=()=>{ stopAuto(); go(i) }; $('dots').appendChild(b) }
+$('bPrev').onclick=()=>{ stopAuto(); go(si-1) };
+$('bNext').onclick=()=>{ stopAuto(); go(si+1) };
+function stopAuto(){ if(auto){ clearInterval(auto); auto=null } $('bAuto').textContent='▶ Авто' }
+$('bAuto').onclick=()=>{
+  if(auto){ stopAuto(); return }
+  $('bAuto').textContent='❚❚ Стоп'; if(si>=STEPS.length-1) go(0);
+  const tick=()=>{ if(anim) return; if(si>=STEPS.length-1){ stopAuto(); return } go(si+1) };
+  tick(); auto=setInterval(tick,400);
+};
+document.querySelectorAll('#stbtn button').forEach(b=>b.onclick=()=>{ stopAuto(); go(+b.dataset.s) });
+document.querySelectorAll('#speed button').forEach(b=>b.onclick=()=>{ speedK=+b.dataset.s; document.querySelectorAll('#speed button').forEach(x=>x.classList.toggle('sel',x===b)) });
+
+function refreshChips(){
+  const on=S.sw>0.5;
+  $('chips').innerHTML=[
+   ['Контакт АРС',on?'замкнут':'разомкнут'],['Катушка ЭПВ',on?'под питанием':'без питания'],['Атмосферный канал ЭПВ',S.rod>0.5?'закрыт':'открыт'],['Выпускной клапан ТМ',S.box>0.5?'закрыт':'открыт'],['Давление ТМ',(Math.round(S.tm*10)/10).toFixed(1).replace('.',',')+' кгс/см²']
+  ].map(c=>`<span class="chip${c[1]==='замкнут'||c[1]==='под питанием'?' on':''}"><span>${c[0]}:</span> <b>${c[1]}</b></span>`).join('');
+}
+
+/* ---------- детали ---------- */
+const HITS=[
+ ['coil','Катушка ЭПВ-АРС',446,52,64,94,'Электромагнит вентиля. Питается от цепи +70 В через контакт системы АРС. Пока напряжение есть, клапан удерживается и атмосферный канал закрыт.',()=>S.sw>0.5?'под питанием':'без питания'],
+ ['valve','Клапан ЭПВ',452,128,40,76,'Обычный вентиль включающего типа: нижнее отверстие закрыто заглушкой. При питании закрывает атмосферный канал, без питания — открывает его.',()=>S.rod>0.5?'канал закрыт':'канал открыт'],
+ ['port','Атмосферное отверстие ЭПВ',478,136,48,26,'Выход камеры над диафрагмой реле давления в атмосферу. Открыт, только когда ЭПВ без питания.',()=>S.rod>0.5?'закрыто':'воздух выходит'],
+ ['pipe','Трубка к ЭПВ',392,80,66,80,'Соединяет камеру над диафрагмой реле давления с ЭПВ-АРС. На трубопроводе стоит СОТ, а подключение выполнено через 3-ходовой разобщительный кран ЭПВ в кабине.',()=>S.rod>0.5?'воздух заперт':'воздух уходит в атмосферу'],
+ ['diaph','Диафрагма и камера над ней',150,50,190,52,'Давление в камере над диафрагмой управляет реле давления. Пока ЭПВ закрыт, оно сохраняется; при открытии ЭПВ камера сообщается с атмосферой.',()=>S.rod>0.5?'давление держится':'давление падает'],
+ ['exh','Выпускной клапан ТМ',222,190,66,50,'Клапан в нижней части реле давления: при закрытом положении запирает ТМ, при открытом выпускает воздух ТМ в атмосферу.',()=>S.box>0.5?'закрыт':'открыт'],
+ ['nmc','Сужение 2,5 мм на входе НМ',136,174,28,26,'Воздух из НМ подводится через сужение 2,5 мм. При открытом ЭПВ он уходит в атмосферу, не успевая заряжать камеру над диафрагмой.',()=>S.rod>0.5?'воздух заряжает камеру':'воздух уходит через ЭПВ'],
+ ['gauge','Манометр',2,4,118,116,'Чёрная стрелка показывает давление в напорной магистрали, красная — в тормозной магистрали.',()=>(Math.round(S.tm*10)/10).toFixed(1).replace('.',',')+' кгс/см² в ТМ'],
+ ['arc','Система АРС и её контакт',526,262,82,92,'При включённой системе АРС контакт замкнут, и на катушку ЭПВ подаётся напряжение +70 В. Контакт можно нажать мышью, чтобы снять или подать питание.',()=>S.sw>0.5?'замкнут':'разомкнут']
+];
+const hitInfo={}, hitState={};
+for(const [id,name,x,y,w,h,desc,fn] of HITS){ hitInfo[id]={name,desc}; hitState[id]=fn; mk('rect',{x,y,width:w,height:h,'data-id':id},$('hits')) }
+const tip=$('tip'), svgEl=$('scheme');
+function showTip(el,x,y){
+  const id=el.dataset.id, inf=hitInfo[id];
+  tip.innerHTML=`<b>${inf.name}</b><span class="v">${hitState[id]()}</span>`; tip.hidden=false;
+  const w=tip.offsetWidth,h=tip.offsetHeight;
+  tip.style.left=Math.min(x+14,innerWidth-w-8)+'px'; tip.style.top=(y+h+22>innerHeight?y-h-10:y+16)+'px';
+}
+const pick=e=>e.target.closest&&e.target.closest('rect[data-id]');
+svgEl.addEventListener('pointermove',e=>{ const el=pick(e); if(el) showTip(el,e.clientX,e.clientY); else tip.hidden=true });
+svgEl.addEventListener('pointerleave',()=>{ tip.hidden=true });
+svgEl.addEventListener('click',e=>{
+  document.querySelectorAll('#hits .hl').forEach(x=>x.classList.remove('hl'));
+  const el=pick(e);
+  if(el){ el.classList.add('hl'); const id=el.dataset.id, inf=hitInfo[id]; $('pTitle').textContent=inf.name; $('pText').textContent=inf.desc+' Сейчас: '+hitState[id]()+'.'; $('partCard').hidden=false;
+    if(id==='arc'){ stopAuto(); go(S.sw>0.5?1:5) } }
+  else $('partCard').hidden=true;
+});
+
+go(0,true);
+requestAnimationFrame(frame);
